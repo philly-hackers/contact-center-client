@@ -7,6 +7,8 @@ export class DataService {
 
   constructor(private http: HttpClient) { }
 
+  showLoader = false;
+
   getRequest(): Observable<any> {
     return this.http.get<any>('/api/comments');
   }
