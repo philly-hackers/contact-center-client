@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Broadcaster } from '../shared/services/broadcaster.service';
 import { SearchService } from '../search.service';
-import { UserData } from '../shared/models/userdata.model';
+import { Branch, Contact, Product } from '../shared/models/userdata.model';
 
 @Component({
   selector: 'app-search',
@@ -10,7 +10,8 @@ import { UserData } from '../shared/models/userdata.model';
 })
 export class SearchComponent implements OnInit {
 
-  branches: UserData[];
+  branches: Branch[];
+  products: Product[];
 
   constructor(private broadcaster: Broadcaster, private searchService: SearchService) {  }
 
@@ -24,5 +25,10 @@ export class SearchComponent implements OnInit {
       }, 2000);
     });
   }
-
+  getSelectedProduct(branchId: string) {
+    this.searchService.getContactDetailsByBranchId(branchId);
+    this.searchService.getProductsData.subscribe( data => {
+      this.products = data;
+    });
+  }
 }

@@ -1,23 +1,36 @@
-[{
-	"id": 1,
-	"name": "Willim Hua",
-	"username": "bhua",
-	"email": "william.hua@chubb.com",
-	"address": {
-		"street": "Kulas Light",
-		"suite": "Apt. 556",
-		"city": "Gwenborough",
-		"zipcode": "92998-3874",
-		"geo": {
-			"lat": "-37.3159",
-			"lng": "81.1496"
-		}
-	},
-	"phone": "1-770-736-8031",
-	"website": "chubb.com",
-	"company": {
-		"name": "Chubb Inc.",
-		"catchPhrase": "Multi-layered client-server neural-net",
-		"bs": "harness real-time e-markets"
+[
+	{
+		"id": "817cdcb2-8c52-491e-8d5a-c8a35923e661",
+		"name": "Siddharth Gupta",
+		"email": "sgupta@contact.com",
+		"phone": "1234567890",
+		"type": "Marketing Rep",
+		"branches": [
+		    {
+			   "id": "ba7910a6-13c1-7f05-0cab-fe7dd01851cd",
+			   "name": null,
+			   "address": null,
+			   "geolocation": null
+		    },
+		    {
+			   "id": "634a2962-82cb-4611-6d5d-8cf648c9952d",
+			   "name": null,
+			   "address": null,
+			   "geolocation": null
+		    }
+		],
+		"products": [
+		    {
+			   "id": "86cfbfe5-8e43-be0f-54ee-9ca925765845",
+			   "name": null,
+			   "category": null,
+			   "branches": null
+		    }
+		],
+		"_rid": "tcdhAPbPyyEBAAAAAAAAAA==",
+		"_self": "dbs/tcdhAA==/colls/tcdhAPbPyyE=/docs/tcdhAPbPyyEBAAAAAAAAAA==/",
+		"_etag": "\"60004973-0000-1a00-0000-5ce03a9d0000\"",
+		"_attachments": "attachments/",
+		"_ts": 1558198941
 	}
-}]
+]

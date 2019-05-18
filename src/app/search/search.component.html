@@ -1,14 +1,14 @@
-<ng-container *ngIf="branches.length > 0">
-  <table>
-    <thead>
-      <tr>
-        <th>Name</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let branch of branches" >
-        <td> {{ branch.name }}</td>
-      </tr>
-    </tbody>
-  </table>
-</ng-container>
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+    </tr>
+  </thead>
+  <tbody *ngIf="branches.length > 0">
+    <tr *ngFor="let branch of branches" >
+      <td> {{ branch.name }}</td>
+    </tr>
+  </tbody>
+</table>
+
+<a href="javascript:#" (click)="getSelectedProduct('1')"> click for Search Product</a>
