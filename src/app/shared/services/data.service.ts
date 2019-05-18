@@ -1,9 +1,21 @@
 import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Observable} from 'rxjs';
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable()
 export class DataService {
 
-  constructor() { }
+  constructor(private http: HttpClient) { }
+
+  getRequest(): Observable<any> {
+    return this.http.get<any>('/api/comments');
+  }
+
+  PostRequest(): Observable<any> {
+    return this.http.get<any>('/api/comments');
+  }
+
+  pullRequest(): Observable<any> {
+    return this.http.get<any>('/api/comments');
+  }
 }
