@@ -20,6 +20,18 @@ import {
   FooterComponent
 } from './components';
 
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
+import { BranchesComponent } from './branches/branches.component';
+import { ContactsComponent } from './contacts/contacts.component';
+import { ProductsComponent } from './products/products.component';
+import { SearchComponent } from './search/search.component';
+
+import { Broadcaster } from './shared/services/broadcaster.service'
+import { DataService } from './shared/services/data.service';
+import { SearchService } from './search.service';
+
 const routes: Routes = [
   {
     path: 'login',
@@ -28,6 +40,10 @@ const routes: Routes = [
   {
     path: 'contacts',
     component: ContactsPageComponent
+  },
+  {
+    path: 'search',
+    component: SearchComponent
   },
   {
     path: 'contacts/:contactId',
@@ -68,18 +84,6 @@ const routes: Routes = [
   }
 ];
 
-
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-
-import { BranchesComponent } from './branches/branches.component';
-import { ContactsComponent } from './contacts/contacts.component';
-import { ProductsComponent } from './products/products.component';
-import { SearchComponent } from './search/search.component';
-
-import { Broadcaster } from './shared/services/broadcaster.service'
-import { DataService } from './shared/services/data.service';
-
 @NgModule({
   declarations: [
     AppComponent,
@@ -112,7 +116,8 @@ import { DataService } from './shared/services/data.service';
   ],
   providers: [
     Broadcaster,
-    DataService
+    DataService,
+    SearchService
   ],
   bootstrap: [AppComponent]
 })

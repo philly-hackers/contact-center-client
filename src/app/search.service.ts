@@ -4,22 +4,30 @@ import { UserData } from './shared/models/userdata.model';
 import { BehaviorSubject } from 'rxjs';
 import { Broadcaster } from './shared/services/broadcaster.service';
 
-const INIT_DATA = []
 
 @Injectable({
   providedIn: 'root'
 })
 export class SearchService {
-  searchData = new BehaviorSubject<any>('searchData');
+  public branchesData: BehaviorSubject<UserData[]> = new BehaviorSubject<UserData[]>([]);
+
+  baseURL: String = '/app/getData';
+
   constructor(private dataService: DataService, private broadcaster: Broadcaster) { }
 
+  get getBranchesData() {
+    return this.branchesData.asObservable();
+  }
 
-  getSearchResult() {
+  getBranchDetails() {
     this.broadcaster.broadcast('loader', true);
     const params = {};
-    const _baseURL = '/app/getData';
-    this.dataService.getRequest(_baseURL, params).subscribe( (data: UserData) => {
-      this.searchData.next(data);
+    this.dataService.getRequest(this.baseURL, params).subscribe(data => {
+      this.branchesData.next(data);
     });
+  }
+
+  getContactDetailsByBranchId() {
+
   }
 }

@@ -14,28 +14,19 @@ export class AppComponent implements OnInit {
   constructor(private router: Router, private broadcaster: Broadcaster, private searchService: SearchService) {}
 
   public isLoggedIn = false;
-  showProgressBar: Boolean = true;
+  showProgressBar: Boolean = false;
   title = 'app';
   color = '#CCCCCC';
   mode = 'indeterminate';
   value = 50;
   bufferValue = 75;
-  searchDataResponse: UserData[];
 
   ngOnInit() {
-    this.searchService.getSearchResult();
-    this.searchService.searchData.subscribe(data => {
-      this.searchDataResponse = data;
-      setTimeout(() => {
-        this.broadcaster.broadcast('loader', false);
-      }, 2000);
-      console.log(this.searchDataResponse);
-    });
-
     this.router.events.subscribe(v => {
       this.isLoggedIn = !window.location.href.includes('login');
     });
-    this.broadcaster.on('loader').subscribe( ( data: Boolean) => {
+
+    this.broadcaster.on('loader').subscribe((data: Boolean) => {
       this.showProgressBar = data;
     });
   }

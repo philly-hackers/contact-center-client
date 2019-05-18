@@ -13,7 +13,7 @@ export class DataService {
     return this.http.get<any>(this.DATA_SOURCE);
   }
 
-  PostRequest(url, params): Observable<any> {
+  PostRequest(url: string, params: any): Observable<any> {
     return this.http.post<any>(url, params, {
         headers : new HttpHeaders({ 'Content-Type': 'application/json'})
       }
