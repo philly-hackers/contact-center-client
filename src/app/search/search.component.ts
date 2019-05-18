@@ -25,7 +25,7 @@ export class SearchComponent implements OnInit {
       }, 2000);
     });
   }
-  getSelectedProduct(branchId: string) {
+  getProduct(branchId: string) {
     this.searchService.getContactDetailsByBranchId(branchId);
     this.searchService.getProductsData.subscribe( data => {
       this.products = data;

@@ -11,7 +11,8 @@ export class SearchService {
   public branchesData: BehaviorSubject<Branch[]> = new BehaviorSubject<Branch[]>([]);
   public productData: BehaviorSubject<Contact[]> = new BehaviorSubject<Contact[]>([]);
 
-  baseURL = '';
+  baseBranchURL = 'http://chubbcontactcenterapi.azurewebsites.net/api/branch/';
+  baseContactURL = 'http://chubbcontactcenterapi.azurewebsites.net/api/contact/';
 
   constructor(private dataService: DataService, private broadcaster: Broadcaster) { }
 
@@ -25,16 +26,24 @@ export class SearchService {
 
   getBranchDetails() {
     this.broadcaster.broadcast('loader', true);
-    this.dataService.getRequest(this.baseURL).subscribe((data) => {
+    this.dataService.getRequest(this.baseBranchURL, '').subscribe((data) => {
       this.branchesData.next(data);
     });
   }
 
   getContactDetailsByBranchId(params) {
     this.broadcaster.broadcast('loader', true);
-    this.dataService.postRequest(this.baseURL, params).subscribe(data => {
+    this.dataService.getRequest(this.baseContactURL, params).subscribe(data => {
+        this.productData.next(data);
+      }, error => {
+        console.log('Server Error');
+      });
+  }
+
+  getContactDetailsByBranchName(params) {
+    this.broadcaster.broadcast('loader', true);
+    this.dataService.getRequest(this.baseContactURL, params).subscribe(data => {
       this.productData.next(data);
     });
-
   }
 }

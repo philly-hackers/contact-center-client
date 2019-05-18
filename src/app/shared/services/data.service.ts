@@ -9,9 +9,11 @@ export class DataService {
 
   showLoader = false;
 
-  getRequest(url: string): Observable<any> {
+  getRequest(url: string, params: any): Observable<any> {
     const _url = (url && url.length > 0) ? url : this.DATA_SOURCE;
-    return this.http.get<any>(_url);
+    const getURL = _url + params;
+    // const getURL = this.DATA_SOURCE;
+    return this.http.get<any>(getURL);
   }
 
   postRequest(url: string, params: any): Observable<any> {
