@@ -5,6 +5,7 @@ import { RouterModule, Routes} from '@angular/router';
 import { SharedModule } from './shared/shared.module';
 import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
+import { AngularFontAwesomeModule } from 'angular-font-awesome';
 
 import {
   LoginPageComponent,
@@ -17,7 +18,8 @@ import {
   BranchesDetailsPageComponent,
   ProductsDetailsPageComponent,
   ContactsDetailsPageComponent,
-  FooterComponent
+  FooterComponent,
+  SearchPageComponent
 } from './components';
 
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
@@ -31,6 +33,7 @@ import { SearchComponent } from './search/search.component';
 import { Broadcaster } from './shared/services/broadcaster.service'
 import { DataService } from './shared/services/data.service';
 import { SearchService } from './search.service';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 const routes: Routes = [
   {
@@ -41,10 +44,10 @@ const routes: Routes = [
     path: 'contacts',
     component: ContactsPageComponent
   },
-  {
-    path: 'search',
-    component: SearchComponent
-  },
+  // {
+  //   path: 'search',
+  //   component: SearchComponent
+  // },
   {
     path: 'contacts/:contactId',
     component: ContactsDetailsPageComponent
@@ -78,8 +81,12 @@ const routes: Routes = [
     component: CreateProductPageComponent
   },
   {
+    path: 'search',
+    component: SearchPageComponent
+  },
+  {
     path: '',
-    redirectTo: '/login',
+    redirectTo: '/search',
     pathMatch: 'full'
   }
 ];
@@ -97,6 +104,7 @@ const routes: Routes = [
     BranchesDetailsPageComponent,
     ProductsDetailsPageComponent,
     ContactsDetailsPageComponent,
+    SearchPageComponent,
     FooterComponent,
     BranchesComponent,
     ContactsComponent,
@@ -112,7 +120,10 @@ const routes: Routes = [
     BrowserModule,
     HttpClientModule,
     NgbModule,
-    SharedModule
+    SharedModule,
+    AngularFontAwesomeModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [
     Broadcaster,

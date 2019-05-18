@@ -1,0 +1,91 @@
+<div class="page">
+  <div class="container">
+    <h1>Search Contacts</h1>
+
+    <label for="branch">Select a branch</label>
+    <div class="input-group mb-3">
+      <select
+        class="custom-select"
+        id="branch"
+        [(ngModel)]="selectedBranchId"
+        (change)="onBranchSelect($event.target.value)"
+      >
+        <option selected disabled [value]="null">Choose...</option>
+        <option *ngFor="let branch of branches" [value]="branch.id">{{
+          branch.name
+        }}</option>
+      </select>
+    </div>
+
+    <label for="product">Filter By Product</label>
+    <div class="input-group mb-3">
+      <select
+        [disabled]="!selectedBranch"
+        class="custom-select"
+        id="product"
+        [(ngModel)]="selectedProductId"
+        (change)="onProductSelect($event.target.value)"
+      >
+        <option selected value="All">All Products</option>
+        <option *ngFor="let product of products" [value]="product.id">{{
+          product.name
+        }}</option>
+      </select>
+    </div>
+
+    <h2 class="mt-5 mb-4">Contacts List</h2>
+    <div id="accordion">
+      <div *ngIf="!displayedContacts.length" class="w-100 text-center p-5">
+        No results
+      </div>
+
+      <div class="card" *ngFor="let contact of displayedContacts; index as i">
+        <div
+          class="card-header d-flex"
+          data-toggle="collapse"
+          [attr.data-target]="getTarget(contact.id)"
+        >
+          <span class="card-header-item-container">
+            <span class="card-header-item">
+              {{ contact.firstName }} {{ contact.lastName }}
+            </span>
+            <span class="card-header-item"> {{ contact.emailAddress }} </span>
+            <span class="card-header-item"> {{ contact.phoneNumber }} </span>
+            <span class="card-header-item">
+              <span *ngFor="let product of contact.products">
+                {{ product.name }}
+              </span>
+            </span>
+          </span>
+          <span class="card-header-collapse-icon">
+            <fa name="angle-down"></fa>
+          </span>
+        </div>
+        <div id="{{ contact.id }}" class="collapse" data-parent="#accordion">
+          <div class="card-body">
+            <div class="card-body-item">
+              <fa class="card-body-icon" name="phone"></fa>
+              <span> {{ contact.phoneNumber }} </span>
+            </div>
+            <div class="card-body-item">
+              <fa class="card-body-icon" name="envelope"></fa>
+              <span> {{ contact.emailAddress }} </span>
+            </div>
+            <div class="card-body-item">
+              <fa class="card-body-icon" name="bookmark"></fa>
+              <span> Products </span>
+              <div class="d-flex flex-wrap product-container">
+                <div
+                  class="product-item"
+                  *ngFor="let product of contact.products"
+                >
+                  {{ product.name }}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
