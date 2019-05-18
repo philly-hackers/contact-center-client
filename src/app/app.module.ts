@@ -1,7 +1,11 @@
+import { AppRoutingModule } from './app-routing.module';
 import { BrowserModule } from '@angular/platform-browser';
+import { HttpClientModule } from '@angular/common/http';
+import { RouterModule, Routes} from '@angular/router';
+import { SharedModule } from './shared/shared.module';
 import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
 import { AppComponent } from './app.component';
+
 import {
   LoginPageComponent,
   ContactsPageComponent,
@@ -17,10 +21,6 @@ import {
 } from './components';
 
 const routes: Routes = [
-  {
-    path: '',
-    component: LoginPageComponent
-  },
   {
     path: 'login',
     component: LoginPageComponent
@@ -60,8 +60,25 @@ const routes: Routes = [
   {
     path: 'create-product',
     component: CreateProductPageComponent
+  },
+  {
+    path: '',
+    redirectTo: '/login',
+    pathMatch: 'full' 
   }
 ];
+
+
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
+import { BranchesComponent } from './branches/branches.component';
+import { ContactsComponent } from './contacts/contacts.component';
+import { ProductsComponent } from './products/products.component';
+import { SearchComponent } from './search/search.component';
+
+import { Broadcaster } from './shared/services/broadcaster.service'
+import { DataService } from './shared/services/data.service';
 
 @NgModule({
   declarations: [
@@ -76,13 +93,27 @@ const routes: Routes = [
     BranchesDetailsPageComponent,
     ProductsDetailsPageComponent,
     ContactsDetailsPageComponent,
-    FooterComponent
+    FooterComponent,
+    BranchesComponent,
+    ContactsComponent,
+    ProductsComponent,
+    SearchComponent
   ],
   imports: [
     BrowserModule,
-    RouterModule.forRoot(routes)
+    RouterModule.forRoot(routes),
+    AppRoutingModule,
+    BrowserModule,
+    BrowserAnimationsModule,
+    BrowserModule,
+    HttpClientModule,
+    NgbModule,
+    SharedModule
   ],
-  providers: [],
+  providers: [
+    Broadcaster,
+    DataService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

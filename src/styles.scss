@@ -1,6 +1,11 @@
 /* You can add global styles to this file, and also import other style files */
 @import "bootstrap.scss";
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
 
 body {
-    font-family: "PublicoText-Roman";
+  font-family: "PublicoText-Roman";
 }
+
+// nav.navbar {
+//   background: linear-gradient(135deg, #0143a3, #0273d4);
+// }
