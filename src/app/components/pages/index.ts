@@ -8,3 +8,4 @@ export * from './create-product-page/create-product-page.component';
 export * from './branches-details-page/branches-details-page.component';
 export * from './products-details-page/products-details-page.component';
 export * from './contacts-details-page/contacts-details-page.component';
+export * from './search-page/search-page.component';

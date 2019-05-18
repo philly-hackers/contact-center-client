@@ -5,6 +5,7 @@ import { RouterModule, Routes} from '@angular/router';
 import { SharedModule } from './shared/shared.module';
 import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
+import { AngularFontAwesomeModule } from 'angular-font-awesome';
 
 import {
   LoginPageComponent,
@@ -17,7 +18,8 @@ import {
   BranchesDetailsPageComponent,
   ProductsDetailsPageComponent,
   ContactsDetailsPageComponent,
-  FooterComponent
+  FooterComponent,
+  SearchPageComponent
 } from './components';
 
 const routes: Routes = [
@@ -62,8 +64,12 @@ const routes: Routes = [
     component: CreateProductPageComponent
   },
   {
+    path: 'search',
+    component: SearchPageComponent
+  },
+  {
     path: '',
-    redirectTo: '/login',
+    redirectTo: '/search',
     pathMatch: 'full' 
   }
 ];
@@ -93,6 +99,7 @@ import { DataService } from './shared/services/data.service';
     BranchesDetailsPageComponent,
     ProductsDetailsPageComponent,
     ContactsDetailsPageComponent,
+    SearchPageComponent,
     FooterComponent,
     BranchesComponent,
     ContactsComponent,
@@ -108,7 +115,8 @@ import { DataService } from './shared/services/data.service';
     BrowserModule,
     HttpClientModule,
     NgbModule,
-    SharedModule
+    SharedModule,
+    AngularFontAwesomeModule
   ],
   providers: [
     Broadcaster,

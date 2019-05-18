@@ -1,0 +1,47 @@
+.card-header {
+    cursor: pointer;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+.card-header-item {
+    width: 20%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.card-header-item-container {
+    flex-grow: 1;
+    display: flex;
+    width: calc(100% - 30px);
+}
+
+.card-header-collapse-icon {
+    width: 30px;
+}
+
+.card-body-icon {
+    margin-right: 15px;
+}
+
+.card-body-item {
+    margin-bottom: 30px;
+}
+
+.product-container {
+    margin-top: 30px;
+}
+
+.product-item {
+    border-radius: 30px;
+    background-color: white;
+    margin: 5px 10px;
+    color: #6e27c5;
+    padding: 10px 20px;
+    border: 1px solid #6e27c5;
+}
+
+.card-body {
+    padding: 30px;
+}
