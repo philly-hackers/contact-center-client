@@ -14,6 +14,15 @@
     </li>
   </ul>
 </nav>
+<ng-container *ngIf="showProgressBar">
+<mat-progress-bar
+    class="example-margin"
+    [color]="color"
+    [mode]="mode"
+    [value]="value"
+    [bufferValue]="bufferValue">
+</mat-progress-bar>
+</ng-container>
 <div class="container p-3 d-flex h-100 bg-light">
   <router-outlet></router-outlet>
 </div>
