@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { DataService } from './shared/services/data.service';
 import { Broadcaster } from './shared/services/broadcaster.service';
+import { SearchService } from './search.service';
+import { UserData } from './shared/models/userdata.model';
 
 @Component({
   selector: 'app-root',
@@ -9,12 +11,12 @@ import { Broadcaster } from './shared/services/broadcaster.service';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit {
-  constructor(private router: Router, private dataService: DataService, private broadcaster: Broadcaster){}
-  
+  constructor(private router: Router, private broadcaster: Broadcaster, private searchService: SearchService) {}
+
   public isLoggedIn = false;
-  showProgressBar: Boolean = true;
+  showProgressBar: Boolean = false;
   title = 'app';
-  color = 'primary';
+  color = '#CCCCCC';
   mode = 'indeterminate';
   value = 50;
   bufferValue = 75;
@@ -23,12 +25,10 @@ export class AppComponent implements OnInit {
     this.router.events.subscribe(v => {
       this.isLoggedIn = !window.location.href.includes('login');
     });
-    this.broadcaster.on('loader').subscribe(res => {
-      this.showProgressBar = true;
+
+    this.broadcaster.on('loader').subscribe((data: Boolean) => {
+      this.showProgressBar = data;
     });
-    setTimeout(() => {
-      this.showProgressBar = false;
-    }, 5000);
   }
 
   public logout() {

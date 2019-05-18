@@ -22,6 +22,19 @@ import {
   SearchPageComponent
 } from './components';
 
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
+import { BranchesComponent } from './branches/branches.component';
+import { ContactsComponent } from './contacts/contacts.component';
+import { ProductsComponent } from './products/products.component';
+import { SearchComponent } from './search/search.component';
+
+import { Broadcaster } from './shared/services/broadcaster.service'
+import { DataService } from './shared/services/data.service';
+import { SearchService } from './search.service';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+
 const routes: Routes = [
   {
     path: 'login',
@@ -31,6 +44,10 @@ const routes: Routes = [
     path: 'contacts',
     component: ContactsPageComponent
   },
+  // {
+  //   path: 'search',
+  //   component: SearchComponent
+  // },
   {
     path: 'contacts/:contactId',
     component: ContactsDetailsPageComponent
@@ -70,21 +87,9 @@ const routes: Routes = [
   {
     path: '',
     redirectTo: '/search',
-    pathMatch: 'full' 
+    pathMatch: 'full'
   }
 ];
-
-
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-
-import { BranchesComponent } from './branches/branches.component';
-import { ContactsComponent } from './contacts/contacts.component';
-import { ProductsComponent } from './products/products.component';
-import { SearchComponent } from './search/search.component';
-
-import { Broadcaster } from './shared/services/broadcaster.service'
-import { DataService } from './shared/services/data.service';
 
 @NgModule({
   declarations: [
@@ -116,11 +121,14 @@ import { DataService } from './shared/services/data.service';
     HttpClientModule,
     NgbModule,
     SharedModule,
-    AngularFontAwesomeModule
+    AngularFontAwesomeModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [
     Broadcaster,
-    DataService
+    DataService,
+    SearchService
   ],
   bootstrap: [AppComponent]
 })

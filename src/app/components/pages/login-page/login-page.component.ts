@@ -8,7 +8,7 @@ import {Router} from '@angular/router';
 })
 export class LoginPageComponent {
 
-  constructor(private router: Router){}
+  constructor(private router: Router) {}
 
   public login() {
     this.router.navigateByUrl('/contacts');
