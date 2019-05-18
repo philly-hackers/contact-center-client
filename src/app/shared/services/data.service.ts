@@ -9,12 +9,17 @@ export class DataService {
 
   showLoader = false;
 
-  getRequest(url, params): Observable<any> {
-    return this.http.get<any>(this.DATA_SOURCE);
+  getRequest(url: string, params: any): Observable<any> {
+    const _url = (url && url.length > 0) ? url : this.DATA_SOURCE;
+    const getURL = _url + params;
+    // const getURL = this.DATA_SOURCE;
+    return this.http.get<any>(getURL);
   }
 
-  PostRequest(url: string, params: any): Observable<any> {
-    return this.http.post<any>(url, params, {
+  postRequest(url: string, params: any): Observable<any> {
+    const _url = (url && url.length > 0) ? url : this.DATA_SOURCE;
+
+    return this.http.post<any>(_url, params, {
         headers : new HttpHeaders({ 'Content-Type': 'application/json'})
       }
     );

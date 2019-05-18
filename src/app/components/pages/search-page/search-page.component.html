@@ -43,14 +43,12 @@
         <div
           class="card-header d-flex"
           data-toggle="collapse"
-          [attr.data-target]="getTarget(contact.id)"
+          [attr.data-target]="getTarget(i, true)"
         >
           <span class="card-header-item-container">
-            <span class="card-header-item">
-              {{ contact.firstName }} {{ contact.lastName }}
-            </span>
-            <span class="card-header-item"> {{ contact.emailAddress }} </span>
-            <span class="card-header-item"> {{ contact.phoneNumber }} </span>
+            <span class="card-header-item"> {{ contact.name }} </span>
+            <span class="card-header-item"> {{ contact.email }} </span>
+            <span class="card-header-item"> {{ contact.phone }} </span>
             <span class="card-header-item">
               <span *ngFor="let product of contact.products">
                 {{ product.name }}
@@ -61,15 +59,15 @@
             <fa name="angle-down"></fa>
           </span>
         </div>
-        <div id="{{ contact.id }}" class="collapse" data-parent="#accordion">
+        <div id="{{getTarget(i, false)}}" class="collapse" data-parent="#accordion">
           <div class="card-body">
             <div class="card-body-item">
               <fa class="card-body-icon" name="phone"></fa>
-              <span> {{ contact.phoneNumber }} </span>
+              <span> {{ contact.phone }} </span>
             </div>
             <div class="card-body-item">
               <fa class="card-body-icon" name="envelope"></fa>
-              <span> {{ contact.emailAddress }} </span>
+              <span> {{ contact.email }} </span>
             </div>
             <div class="card-body-item">
               <fa class="card-body-icon" name="bookmark"></fa>

@@ -1,17 +1,18 @@
 import { Injectable } from '@angular/core';
 import { DataService } from './shared/services/data.service';
-import { UserData } from './shared/models/userdata.model';
+import { Contact, Branch, Product } from './shared/models/userdata.model';
 import { BehaviorSubject } from 'rxjs';
 import { Broadcaster } from './shared/services/broadcaster.service';
-
 
 @Injectable({
   providedIn: 'root'
 })
 export class SearchService {
-  public branchesData: BehaviorSubject<UserData[]> = new BehaviorSubject<UserData[]>([]);
+  public branchesData: BehaviorSubject<Branch[]> = new BehaviorSubject<Branch[]>([]);
+  public contactsData: BehaviorSubject<Contact[]> = new BehaviorSubject<Contact[]>([]);
 
-  baseURL: String = '/app/getData';
+  baseBranchURL = 'http://chubbcontactcenterapi.azurewebsites.net/api/branch/';
+  baseContactURL = 'http://chubbcontactcenterapi.azurewebsites.net/api/contact/branch/id=';
 
   constructor(private dataService: DataService, private broadcaster: Broadcaster) { }
 
@@ -19,15 +20,23 @@ export class SearchService {
     return this.branchesData.asObservable();
   }
 
+  get getContactsData() {
+    return this.contactsData.asObservable();
+  }
+
   getBranchDetails() {
     this.broadcaster.broadcast('loader', true);
-    const params = {};
-    this.dataService.getRequest(this.baseURL, params).subscribe(data => {
+    this.dataService.getRequest(this.baseBranchURL, '').subscribe((data) => {
       this.branchesData.next(data);
     });
   }
 
-  getContactDetailsByBranchId() {
-
+  getContactDetails(params) {
+    this.broadcaster.broadcast('loader', true);
+    this.dataService.getRequest(this.baseContactURL, params).subscribe(data => {
+        this.contactsData.next(data);
+      }, error => {
+        console.log('Server Error');
+      });
   }
 }
