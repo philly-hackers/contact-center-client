@@ -24,7 +24,6 @@ export class AppComponent implements OnInit {
 
     setTimeout(() => {
       this.showProgressBar = false;
-      
     }, 5000);
   }
 }
