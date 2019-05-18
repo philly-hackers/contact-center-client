@@ -1,14 +1,21 @@
-<ng-container *ngIf="branches.length > 0">
-  <table>
-    <thead>
-      <tr>
-        <th>Name</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let branch of branches" >
-        <td> {{ branch.name }}</td>
-      </tr>
-    </tbody>
-  </table>
-</ng-container>
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Id</th>
+      <th>Address</th>
+      <th>Geo Location</th>
+    </tr>
+  </thead>
+  <tbody *ngIf="branches.length > 0">
+    <tr *ngFor="let branch of branches" >
+      <td> {{ branch.name }}</td>
+      <td> {{ branch.id }}</td>
+      <td> {{ branch.address }}</td>
+      <td> {{ branch.geolocation }}</td>
+    </tr>
+  </tbody>
+</table>
+
+<a href="javascript:#" (click)="getProduct('7da82101-9295-4eb5-9be3-cb14bc1a3adf')"> Search Contact By Id</a>
+<a href="javascript:#" (click)="getProduct('Atlanta/049dcdd3-5866-ee0b-1931-b2abbcffc2e3')"> Search Contact By Product Name & ID</a>
