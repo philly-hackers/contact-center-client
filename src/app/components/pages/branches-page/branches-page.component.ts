@@ -6,6 +6,7 @@ import { BranchAddUpdateResponse } from '../../../shared/models/userdata.model';
 import { Subscription } from 'rxjs';
 import { Router } from '@angular/router';
 import { Branch } from 'src/app/shared/models/userdata.model';
+import { SearchService } from 'src/app/search.service';
 
 @Component({
   selector: 'branches-page',
@@ -16,31 +17,14 @@ export class BranchesPageComponent implements OnInit, OnDestroy {
   subscriptions: Subscription[] = [];
   public branches: Branch[] = [];
 
-  constructor( private branchService: BranchesService,
+  constructor( private branchService: BranchesService, private searchService: SearchService,
     private broadcaster: Broadcaster, private router: Router) { }
 
   ngOnInit(): void {
-    /* Replace with get all branches */
-    this.branches = [
-      {
-        id: '1',
-        name: 'branch1',
-        address: 'addr1',
-        geolocation: 'x y'
-      },
-      {
-        id: '2',
-        name: 'branch2',
-        address: 'addr2',
-        geolocation: 'x y'
-      },
-      {
-        id: '3',
-        name: 'branch3',
-        address: 'addr3',
-        geolocation: 'x y'
-      }
-    ]
+    this.searchService.getBranchDetails();
+    this.searchService.getBranchesData.subscribe(data => {
+      this.branches = data;
+    });
   }
 
   public navigateToBranchDetailsPage(branchId) {
@@ -49,23 +33,6 @@ export class BranchesPageComponent implements OnInit, OnDestroy {
 
   public navigateToCreateBranch() {
     this.router.navigateByUrl('/create-branch');
-  }
-
-  addBranch(params) {
-    const tempParams = {
-      'name': 'Atlanta',
-      'address': '11575 Great Oaks Way \nSuite 200\nAlpharetta, GA 30022 \nT 678-795-4000',
-      'geolocation': '34.0603291,-84.2700786',
-      'isactive': null
-    };
-    params = params ? params : tempParams;
-    this.branchService.addNewBranch(params);
-
-    this.subscriptions.push(
-      this.branchService.addBranchData.subscribe( (data: BranchAddUpdateResponse) => {
-        console.log('Add Branch Data ' + data.name, data.id);
-      })
-    );
   }
 
   updateBranch(params) {
