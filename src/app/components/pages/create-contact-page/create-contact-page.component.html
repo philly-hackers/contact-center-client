@@ -1,5 +1,7 @@
 <div class="page-body">
-  <a *ngIf="branchId" [routerLink]="getBranchRoute()">Return to Branch Details...</a>
+  <a *ngIf="branchId" [routerLink]="getBranchRoute()"
+    >Return to Branch Details...</a
+  >
 
   <h1 class="mb-4">Create Contact</h1>
 
@@ -31,8 +33,25 @@
   </div>
 
   <div class="row">
-    <div class="col-md-4">
-      <label for="phoneNumber" class="fa fa-phone-square">  Phone Number</label>
+    <div class="col-md-12">
+      <label for="contactType">Type</label>
+      <div class="input-group mb-3">
+        <select
+          class="custom-select"
+          id="contactType"
+          [(ngModel)]="contactType"
+        >
+          <option selected disabled [value]="undefined">Choose One...</option>
+          <option>Marketing Rep</option>
+          <option>Underwriter</option>
+        </select>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-6">
+      <label for="phoneNumber"> Phone Number</label>
       <div class="input-group mb-3">
         <input
           class="form-control"
@@ -43,8 +62,10 @@
         />
       </div>
     </div>
-    <div class="col-md-8">
-      <label for="emailAddress" class="fa fa-envelope-open">  Email Address</label>
+    <div class="col-md-6">
+      <label for="emailAddress">
+        Email Address</label
+      >
       <div class="input-group mb-3">
         <input
           class="form-control"
