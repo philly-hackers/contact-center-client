@@ -75,10 +75,18 @@ export class BranchesDetailsPageComponent implements OnInit {
   }
 
   navigateToContactDetailsPage(contactId) {
-    this.router.navigateByUrl('/contacts/' + contactId);
+    this.router.navigateByUrl('/branches/' + this.branchId + '/' + contactId);
   }
 
   navigateToCreateContactPage() {
-    this.router.navigateByUrl('/create-contact');
+    this.router.navigateByUrl('/branches/' + this.branchId + '/create-contact');
+  }
+
+
+  deleteContact(event, contactId) {
+    event.stopPropagation();
+    console.log('deleteContact', contactId);
+    /* Call delete contact here */
+    /* Then should display new list of contact*/
   }
 }

@@ -11,12 +11,21 @@ export class ContactsDetailsPageComponent implements OnInit {
   public contactId: string;
   public contact: Contact;
   public branch: Branch;
+  public branchId: string;
 
   constructor(
     private route: ActivatedRoute
   ) {}
 
+  getBranchRoute() {
+    return '/branches/' + this.branchId;
+  }
+
   ngOnInit() {
+    this.route.paramMap.subscribe(params => {
+      this.branchId = params.get("branchId");
+    });
+
     /* Replace with get branch object */
     this.branch = {
       id: 'branch1',
@@ -42,6 +51,22 @@ export class ContactsDetailsPageComponent implements OnInit {
             {
               id: 'product2',
               name: 'product2'
+            },
+            {
+              id: 'product3',
+              name: 'product3'
+            },
+            {
+              id: 'product3',
+              name: 'product3'
+            },
+            {
+              id: 'product3',
+              name: 'product3'
+            },
+            {
+              id: 'product3',
+              name: 'product3'
             },
             {
               id: 'product3',

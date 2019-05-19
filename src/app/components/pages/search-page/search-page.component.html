@@ -51,15 +51,12 @@
           [attr.data-target]="getTarget(i, true)"
         >
           <span class="card-header-item-container">
-            <span class="card-header-item"> {{ contact.name }} </span>
-            <span class="card-header-item"><a href='mailto:{{ contact.email }}'> {{ contact.email }} </a> </span>
-            <span class="card-header-item"><a href='tel:{{ contact.phone }}'> {{ contact.phone }} </a> </span>
-            <span class="card-header-item">
-              <span *ngFor="let product of contact.products">
-                {{ product.name }}
-              </span>
-            </span>
+            <span class="card-header-item d-flex col-lg-3 col-sm-6 col-12"> {{ contact.name }} </span>
+            <span class="card-header-item d-sm-flex col-lg-3 col-sm-6"> {{ contact.type }} </span>
+            <span class="card-header-item d-lg-flex col-lg-3"><a href='mailto:{{ contact.email }}'> {{ contact.email }} </a> </span>
+            <span class="card-header-item d-lg-flex col-lg-3"><a href='tel:{{ contact.phone }}'> {{ contact.phone }} </a> </span>
           </span>
+
           <span class="card-header-collapse-icon">
             <fa name="angle-down"></fa>
           </span>

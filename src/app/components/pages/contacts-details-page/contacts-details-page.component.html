@@ -1,14 +1,40 @@
 <div class="page-body">
+  <a [routerLink]="getBranchRoute()">Return to Branch Details...</a>
+  <h1>
+    Contact Details Page
+  </h1>
 
-<h1>Contacts Details Page</h1>
-<div *ngIf="contactId && contact">
-    <h2>{{ contact.name }}</h2>
-    <div>Email Address: {{ contact.email }}</div>
-    <div>Phone Number: {{ contact.phone }}</div>
-    <div>Branch: {{branch.name}}</div>
-    <div>Products</div>
-    <div>
-        <span *ngFor="let product of contact.products"> {{product.name}} </span>
+  <div *ngIf="contactId && contact">
+    <div class="details-container">
+      <span class="details-label"> Contact Name </span>
+      <span class="details-text"> {{ contact.name }} </span>
     </div>
-</div>
+
+    <div class="details-container">
+      <span class="details-label"> Email Address </span>
+      <span class="details-text"> {{ contact.email }} </span>
+    </div>
+
+    <div class="details-container">
+      <span class="details-label"> Phone Number </span>
+      <span class="details-text"> {{ contact.phone }} </span>
+    </div>
+
+    <div class="details-container">
+      <span class="details-label"> Branch </span>
+      <span class="details-text"> {{ branch.name }} </span>
+    </div>
+
+    <h2 class="mt-4 mb-3">Products</h2>
+    <select
+      multiple
+      disabled
+      *ngIf="contact.products.length"
+      [size]="contact.products.length > 6 ? 6 : contact.products.length"
+    >
+      <option *ngFor="let product of contact.products" [value]="product.id">
+        {{ product.name }}
+      </option>
+    </select>
+  </div>
 </div>
