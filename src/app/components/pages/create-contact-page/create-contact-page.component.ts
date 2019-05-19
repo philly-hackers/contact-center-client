@@ -17,6 +17,7 @@ export class CreateContactPageComponent implements OnInit {
   public lastName: string;
   public phoneNumber: string;
   public emailAddress: string;
+  public contactType: string;
 
   // Array of ids of products selected
   public selectedProducts: string[];
@@ -73,7 +74,7 @@ export class CreateContactPageComponent implements OnInit {
   }
 
   public onCreateContact() {
-    console.log('onCreateContact', this.firstName, this.lastName, this.branchName, this.emailAddress, this.phoneNumber, this.selectedProducts);
+    console.log('onCreateContact', this.firstName, this.lastName, this.contactType, this.branchName, this.emailAddress, this.phoneNumber, this.selectedProducts);
     this.router.navigateByUrl('/branches/' + this.branchId || '');
   }
 
