@@ -11,8 +11,8 @@ export class SearchService {
   public branchesData: BehaviorSubject<Branch[]> = new BehaviorSubject<Branch[]>([]);
   public contactsData: BehaviorSubject<Contact[]> = new BehaviorSubject<Contact[]>([]);
 
-  baseBranchURL = 'http://chubbcontactcenterapi.azurewebsites.net/api/branch/';
-  baseContactURL = 'http://chubbcontactcenterapi.azurewebsites.net/api/contact/branch/id=';
+  baseBranchURL = 'https://chubbcontactcenterapi.azurewebsites.net/api/branch/';
+  baseContactURL = 'https://chubbcontactcenterapi.azurewebsites.net/api/contact/branch/id=';
 
   constructor(private dataService: DataService, private broadcaster: Broadcaster) { }
 
