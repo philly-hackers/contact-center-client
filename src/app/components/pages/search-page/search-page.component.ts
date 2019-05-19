@@ -24,6 +24,8 @@ export class SearchPageComponent {
   private contacts: Contact[] = [];
   public displayedContacts = [];
 
+  public loading = false;
+
   constructor(
     private broadcaster: Broadcaster,
     private searchService: SearchService
@@ -34,9 +36,6 @@ export class SearchPageComponent {
 
     this.searchService.getBranchesData.subscribe(data => {
       this.branches = data;
-      setTimeout(() => {
-        this.broadcaster.broadcast("loader", false);
-      }, 2000);
     });
 
     this.searchService.getContactsData.subscribe(contacts => {
@@ -53,9 +52,7 @@ export class SearchPageComponent {
       this.contacts = contacts;
       this.onProductSelect("All");
 
-      setTimeout(() => {
-        this.broadcaster.broadcast("loader", false);
-      }, 2000);
+      this.loading = false;
     });
   }
 
@@ -80,6 +77,7 @@ export class SearchPageComponent {
       this.resetFields();
 
       // Fetch updated contacts
+      this.loading = true;
       this.searchService.getContactDetails(this.selectedBranchId);
     }
   }
@@ -102,141 +100,6 @@ export class SearchPageComponent {
       this.displayedContacts = [];
     }
   }
-
-  public mockContacts = [
-    {
-      id: "c1",
-      firstName: "Willian",
-      lastName: "Hua",
-      phoneNumber: "+1-123-123-1234",
-      emailAddress: "asdtest@testasd.com",
-      products: [
-        {
-          id: "p1",
-          name: "Product1"
-        },
-        {
-          id: "p2",
-          name: "Product 2"
-        },
-        {
-          id: "p3",
-          name: "Prod 3"
-        },
-        {
-          id: "p4",
-          name: "Product12345"
-        },
-        {
-          id: "p5",
-          name: "Product T"
-        },
-        {
-          id: "p6",
-          name: "Prd6"
-        }
-      ]
-    },
-    {
-      id: "c2",
-      firstName: "Willian",
-      lastName: "Hua",
-      phoneNumber: "+1-123-123-1234",
-      emailAddress: "asdtest@testasd.com",
-      products: [
-        {
-          id: "p1",
-          name: "Product1"
-        },
-        {
-          id: "p1",
-          name: "Product 2"
-        },
-        {
-          id: "p2",
-          name: "Prod 3"
-        },
-        {
-          id: "p3",
-          name: "Product12345"
-        },
-        {
-          id: "p7",
-          name: "Product T"
-        },
-        {
-          id: "p8",
-          name: "Prd6"
-        }
-      ]
-    },
-    {
-      id: "c3",
-      firstName: "Willian",
-      lastName: "Hua",
-      phoneNumber: "+1-123-123-1234",
-      emailAddress: "asdtest@testasd.com",
-      products: [
-        {
-          id: "p1",
-          name: "Product1"
-        },
-        {
-          id: "p1",
-          name: "Product 2"
-        },
-        {
-          id: "p1",
-          name: "Prod 3"
-        },
-        {
-          id: "p1",
-          name: "Product12345"
-        },
-        {
-          id: "p1",
-          name: "Product T"
-        },
-        {
-          id: "p1",
-          name: "Prd6"
-        }
-      ]
-    },
-    {
-      id: "c4",
-      firstName: "Willian",
-      lastName: "Hua",
-      phoneNumber: "+1-123-123-1234",
-      emailAddress: "asdtest@testasd.com",
-      products: [
-        {
-          id: "p1",
-          name: "Product1"
-        },
-        {
-          id: "p1",
-          name: "Product 2"
-        },
-        {
-          id: "p1",
-          name: "Prod 3"
-        },
-        {
-          id: "p1",
-          name: "Product12345"
-        },
-        {
-          id: "p1",
-          name: "Product T"
-        },
-        {
-          id: "p1",
-          name: "Prd6"
-        }
-      ]
-    }
-  ];
 
   public getTarget(id, prependHash) {
     return prependHash ? "#" + 'ContactItem' + id : 'ContactItem' + id;

@@ -1,5 +1,4 @@
-<div class="page">
-  <div class="container">
+<div class="page-body">
     <h1>Search Contacts</h1>
 
     <label for="branch">Select a branch</label>
@@ -35,9 +34,15 @@
 
     <h2 class="mt-5 mb-4">Contacts List</h2>
     <div id="accordion">
-      <div *ngIf="!displayedContacts.length" class="w-100 text-center p-5">
+      <div *ngIf="!displayedContacts.length && !loading" class="w-100 text-center p-5">
         No results
       </div>
+
+      <div *ngIf="loading" class="w-100 text-center p-5">
+            <fa size="2x" animation="spin" name="spinner"></fa>
+        </div>
+
+      
 
       <div class="card" *ngFor="let contact of displayedContacts; index as i">
         <div
@@ -84,6 +89,5 @@
           </div>
         </div>
       </div>
-    </div>
   </div>
 </div>

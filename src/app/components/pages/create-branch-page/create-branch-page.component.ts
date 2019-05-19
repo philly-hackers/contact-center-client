@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'create-branch-page',
@@ -7,4 +8,9 @@ import { Component } from '@angular/core';
 })
 export class CreateBranchPageComponent {
 
+  constructor(private router: Router) {}
+  
+  public onCreateBranch() {
+    this.router.navigateByUrl('/branches');
+  }
 }
