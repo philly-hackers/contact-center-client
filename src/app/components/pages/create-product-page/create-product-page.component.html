@@ -1,9 +1,18 @@
 <div class="page-body">
+  <h1 class="mb-4">Create Product</h1>
 
-<h1> Create Product Page </h1>
+  <label for="productName">Product Name</label>
+  <div class="input-group mb-3">
+    <input
+      class="form-control"
+      type="text"
+      id="productName"
+      [(ngModel)]="productName"
+      placeholder="e.g. Auto Insurance"
+    />
+  </div>
 
-<label for="">Name</label>
-<input type="text">
-
-<button (click)="onCreateProduct()">Create Product</button>
+  <button class="btn btn-dark btn-purple mt-3" (click)="onCreateProduct()">
+    Create Product
+  </button>
 </div>

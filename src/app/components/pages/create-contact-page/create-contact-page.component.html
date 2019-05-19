@@ -1,29 +1,87 @@
 <div class="page-body">
+  <h1 class="mb-4">Create Contact</h1>
 
-<h1> Create Contact Page </h1>
+  <div class="row">
+    <div class="col-md-6">
+      <label for="firstName">First Name</label>
+      <div class="input-group mb-3">
+        <input
+          class="form-control"
+          type="text"
+          id="firstName"
+          [(ngModel)]="firstName"
+          placeholder="e.g. Agent"
+        />
+      </div>
+    </div>
+    <div class="col-md-6">
+      <label for="lastName">Last Name</label>
+      <div class="input-group mb-3">
+        <input
+          class="form-control"
+          type="text"
+          id="lastName"
+          [(ngModel)]="lastName"
+          placeholder="e.g. Smith"
+        />
+      </div>
+    </div>
+  </div>
 
-<label for="">First Name</label>
-<input type="text">
+  <div class="row">
+    <div class="col-md-4">
+      <label for="phoneNumber">Phone Number</label>
+      <div class="input-group mb-3">
+        <input
+          class="form-control"
+          type="tel"
+          id="phoneNumber"
+          [(ngModel)]="phoneNumber"
+          placeholder="123-456-7890"
+        />
+      </div>
+    </div>
+    <div class="col-md-8">
+      <label for="emailAddress">Email Address</label>
+      <div class="input-group mb-3">
+        <input
+          class="form-control"
+          type="email"
+          id="emailAddress"
+          [(ngModel)]="emailAddress"
+          placeholder="chubbAcc1@test.com"
+        />
+      </div>
+    </div>
+  </div>
 
-<label for="">Last Name</label>
-<input type="text">
+  <div class="row">
+    <div class="col-12">
+      <label for="branchName">Branch Name</label>
+      <div class="input-group mb-3">
+        <input
+          disabled
+          class="form-control"
+          type="text"
+          id="branchName"
+          [(ngModel)]="branchName"
+        />
+      </div>
+    </div>
+  </div>
 
-<label for="">Phone Number</label>
-<input type="phone">
+  <div class="row mt-3 mb-3">
+    <div class="col-12">
+      <label for="branchProducts">Select the products that apply...</label> 
+    </div>
+    <div class="col-12">
+      <select *ngIf="availableProducts.length" multiple [size]="availableProducts.length > 6 ? 6 : availableProducts.length" [(ngModel)]="selectedProducts">
+          <option *ngFor="let product of availableProducts" [value]="product.id"> {{product.name}} </option>
+      </select>
+    </div>
+  </div>
 
-<label for="">Email Address</label>
-<input type="email">
-
-<div>Branch</div>
-<input disabled type="text" value="Current Branch">
-
-<label for="">Products</label>
-<select multiple>
-    <option selected>Choose...</option>
-    <option value="1">One</option>
-    <option value="2">Two</option>
-    <option value="3">Three</option>
-</select>
-
-<button (click)="onCreateContact()"> Create Contact </button>
+  <button class="btn btn-dark btn-purple mt-3" (click)="onCreateContact()">
+    Create Contact
+  </button>
 </div>

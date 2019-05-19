@@ -1,12 +1,38 @@
 <div class="page-body">
+  <h1 class="mb-4">Branches Details Page</h1>
+  <div *ngIf="branchId && branch">
+    <div class="details-container">
+      <span class="details-label"> Branch Name </span>
+      <span class="details-text"> {{ branch.name }} </span>
+    </div>
+    <div class="details-container">
+      <span class="details-label"> Branch Address </span>
+      <span class="details-text"> {{ branch.address }} </span>
+    </div>
 
-<h1> Branches Details Page </h1>
-<div *ngIf="branchId && branch">
-    <h2> {{branch.name}}</h2>
-    <div> Address: {{branch.address}} </div>
+    <h2 class="mt-4 mb-3">Manage Contacts</h2>
 
-    <h2> Contacts </h2>
-    <button (click)="navigateToCreateContactPage()"> Create New Contact </button>
-    <button *ngFor="let contact of contacts" (click)="navigateToContactDetailsPage(contact.id)"> {{contact.name}}</button>
-</div>
+    <button
+      class="btn btn-dark btn-purple"
+      (click)="navigateToCreateContactPage()"
+    >
+      <fa name="plus"></fa> Create New Contact
+    </button>
+
+    <h3 class="mt-3 mb-2">Browse Contacts</h3>
+
+    <div>
+      <div *ngFor="let contact of contacts"
+      (click)="navigateToContactDetailsPage(contact.id)" class="card"
+      tabindex="0" >
+      <div class="card-header d-flex">
+        <span class="card-header-item-container">
+          <span class="card-header-item"> {{ contact.name }} </span>
+        </span>
+        <span class="card-header-collapse-icon">
+          <fa name="angle-right"></fa>
+        </span>
+      </div>
+    </div>
+  </div>
 </div>

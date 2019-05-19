@@ -1,12 +1,15 @@
 <div class="page-body">
+  <h1 class="mb-4">Create Branch</h1>
 
-<h1> Create Branch Page </h1>
+  <label for="branchName">Branch Name</label>
+  <div class="input-group mb-3">
+    <input class="form-control" type="text" id="branchName" [(ngModel)]="branchName" placeholder="e.g. Atlanta" />
+  </div>
 
-<label for="">Name</label>
-<input type="text">
+  <label for="branchAddress">Branch Address</label>
+  <div class="input-group mb-3">
+    <input class="form-control" type="text" id="branchAddress" [(ngModel)]="branchAddress" placeholder="e.g. 10 Broad Street, Atlanta, GA, 12345" />
+  </div>
 
-<label for="">Address</label>
-<input type="text">
-
-<button (click)="onCreateBranch()"> Create Branch </button>
+  <button class="btn btn-dark btn-purple mt-3" (click)="onCreateBranch()">Create Branch</button>
 </div>

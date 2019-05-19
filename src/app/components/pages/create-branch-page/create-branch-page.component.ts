@@ -8,9 +8,13 @@ import { Router } from '@angular/router';
 })
 export class CreateBranchPageComponent {
 
+  public branchName: string;
+  public branchAddress: string;
+
   constructor(private router: Router) {}
   
   public onCreateBranch() {
+    console.log('onCreateBranch', this.branchName, this.branchAddress);
     this.router.navigateByUrl('/branches');
   }
 }
