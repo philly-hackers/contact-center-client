@@ -1,2 +1,12 @@
-<div> Branches Details Page </div>
-<div *ngIf="branchId"> id {{branchId}} </div>
+<div class="page-body">
+
+<h1> Branches Details Page </h1>
+<div *ngIf="branchId && branch">
+    <h2> {{branch.name}}</h2>
+    <div> Address: {{branch.address}} </div>
+
+    <h2> Contacts </h2>
+    <button (click)="navigateToCreateContactPage()"> Create New Contact </button>
+    <button *ngFor="let contact of contacts" (click)="navigateToContactDetailsPage(contact.id)"> {{contact.name}}</button>
+</div>
+</div>

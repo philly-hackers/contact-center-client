@@ -34,6 +34,7 @@ import { Broadcaster } from './shared/services/broadcaster.service'
 import { DataService } from './shared/services/data.service';
 import { SearchService } from './search.service';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ContextService } from './services/context.service';
 
 const routes: Routes = [
   {
@@ -41,16 +42,12 @@ const routes: Routes = [
     component: LoginPageComponent
   },
   {
-    path: 'contacts',
-    component: ContactsPageComponent
+    path: 'create-contact',
+    component: CreateContactPageComponent
   },
-  // {
-  //   path: 'search',
-  //   component: SearchComponent
-  // },
   {
-    path: 'contacts/:contactId',
-    component: ContactsDetailsPageComponent
+    path: 'create-product',
+    component: CreateProductPageComponent
   },
   {
     path: 'branches',
@@ -61,24 +58,12 @@ const routes: Routes = [
     component: BranchesDetailsPageComponent
   },
   {
-    path: 'products',
-    component: ProductsPageComponent
-  },
-  {
-    path: 'products/:productId',
-    component: ProductsDetailsPageComponent
-  },
-  {
-    path: 'create-contact',
-    component: CreateContactPageComponent
-  },
-  {
     path: 'create-branch',
     component: CreateBranchPageComponent
   },
   {
-    path: 'create-product',
-    component: CreateProductPageComponent
+    path: 'contacts/:contactId',
+    component: ContactsDetailsPageComponent
   },
   {
     path: 'search',
@@ -128,7 +113,8 @@ const routes: Routes = [
   providers: [
     Broadcaster,
     DataService,
-    SearchService
+    SearchService,
+    ContextService
   ],
   bootstrap: [AppComponent]
 })

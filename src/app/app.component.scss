@@ -7,9 +7,22 @@
 }
 
 .nav-link {
-    font-size: 20px;
+  font-size: 20px;
 }
 
 .navbar {
-    background-color: #6e27c5 !important;
+  background-color: #6e27c5 !important;
+}
+
+.nav-user-data {
+  color: white;
+  font-weight: bold;
+  margin: 15px 0;
+}
+
+// Large devices (desktops, 992px and up)
+@media (min-width: 992px) {
+  .nav-user-data {
+    margin: 0 25px;
+  }
 }

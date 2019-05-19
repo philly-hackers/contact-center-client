@@ -15,22 +15,36 @@
 
   <div class="collapse navbar-collapse" id="navbarToggle" *ngIf="isLoggedIn">
     <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
-      <li class="nav-item active">
-        <a class="nav-link" routerLink="/contacts">Contacts</a>
+        <li class="nav-item">
+            <a class="nav-link" routerLink="/search"> Search Contacts </a>
+          </li>
+      <li class="nav-item">
+        <a class="nav-link" routerLink="/branches"> Manage Branches</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" routerLink="/branches">Branches</a>
+        <a class="nav-link" routerLink="/create-contact"> Create Contact</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" routerLink="/products">Products</a>
+        <a class="nav-link" routerLink="/create-product"> Create Product</a>
       </li>
     </ul>
+    <div class="nav-user-data"> Hello, {{username}}</div>
     <div class="form-inline my-2 my-lg-0">
       <button class="btn btn-outline-light my-2 my-sm-0" (click)="logout()">
         Log Out
       </button>
     </div>
   </div>
+
+  <div class="collapse navbar-collapse" id="navbarToggle" *ngIf="!isLoggedIn">    
+      <ul class="navbar-nav mr-auto mt-2 mt-lg-0"> </ul>      
+      <div class="form-inline my-2 my-lg-0">
+        <button class="btn btn-outline-light my-2 my-sm-0" (click)="navigateToLogInPage()">
+          Log In
+        </button>
+      </div>
+    </div>
+
 </nav>
 
 <!-- 
@@ -44,6 +58,11 @@
     </mat-progress-bar>
 </ng-container> -->
 
-<router-outlet></router-outlet>
-
+<div class="page-bg"></div>
+<div class="page-container">
+  <div class="container">
+    <router-outlet></router-outlet>
+  </div>
+</div>
+  
 <footer></footer>
