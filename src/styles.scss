@@ -6,6 +6,25 @@ body {
   font-family: "PublicoText-Roman";
 }
 
+.toggle-btn {
+  border: 1px solid #6e27c5 !important;
+  background-color: #6e27c5;
+  color: white;
+}
+
+.toggle-btn.active {
+  border: 1px solid #6e27c5 !important;
+  background-color: white;
+  color: #6e27c5;
+  border-color: #6e27c5 !important;
+  box-shadow: 0 0 0 0.2rem #6e27c555;
+}
+
+.toggle-btn.active:focus {
+  border-color: #6e27c5 !important;
+  box-shadow: 0 0 0 0.2rem #6e27c555;
+}
+
 a {
   color: gray;
 }
@@ -43,9 +62,9 @@ select[multiple] option:last-child {
 }
 
 .form-control:focus,
-select:focus {
+select:focus, input:focus, button:focus {
   border-color: #6e27c5 !important;
-  box-shadow: 0 0 0 0.2rem #6e27c555;
+  box-shadow: 0 0 0 0.2rem #6e27c555 !important;
 }
 
 label {
