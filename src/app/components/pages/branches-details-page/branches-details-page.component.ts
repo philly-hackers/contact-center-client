@@ -1,76 +1,36 @@
-import { Component, OnInit } from "@angular/core";
-import { ActivatedRoute, Router } from "@angular/router";
-import { Contact, Branch } from "src/app/shared/models/userdata.model";
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
+import { Contact, Branch } from 'src/app/shared/models/userdata.model';
+import { BranchesService } from 'src/app/shared/services/branches.service';
+import { ContactService } from 'src/app/shared/services/contact.service';
+import { SearchService } from 'src/app/search.service';
 
 @Component({
-  selector: "branches-details-page",
-  templateUrl: "./branches-details-page.component.html",
-  styleUrls: ["./branches-details-page.component.scss"]
+  selector: 'branches-details-page',
+  templateUrl: './branches-details-page.component.html',
+  styleUrls: ['./branches-details-page.component.scss']
 })
 export class BranchesDetailsPageComponent implements OnInit {
   public branchId: string;
   public branch: Branch;
   public contacts: Contact[] = [];
 
-  constructor(private route: ActivatedRoute, private router: Router) {}
+  constructor(private route: ActivatedRoute, private router: Router,
+    private branchService: BranchesService, private searchService: SearchService) {}
 
   ngOnInit() {
     this.route.paramMap.subscribe(params => {
-      this.branchId = params.get("branchId");
+      this.branchId = JSON.stringify(params.get('branchId')).replace(/\"/g, '');
 
-      /* Replace with get branch details */
-      this.branch = {
-        id: "1",
-        name: "branch1",
-        address: "addr1",
-        geolocation: "x y"
-      };
+      this.branchService.getBranchDataById(this.branchId);
+      this.branchService.getBranchData.subscribe(branch => {
+        this.branch = branch;
+      });
 
-      /* Replace with call to get contacts for this branch */
-      this.contacts = [
-        {
-          id: "1",
-          name: "contact1",
-          email: "email1",
-          phone: "phone1",
-          type: "type1",
-          branches: [],
-          products: [],
-          _rid: "string",
-          _self: "string",
-          _etag: "string",
-          _attachments: "string",
-          _ts: 1
-        },
-        {
-          id: "2",
-          name: "contact2",
-          email: "email2",
-          phone: "phone2",
-          type: "type2",
-          branches: [],
-          products: [],
-          _rid: "string",
-          _self: "string",
-          _etag: "string",
-          _attachments: "string",
-          _ts: 2
-        },
-        {
-          id: "3",
-          name: "contact3",
-          email: "email3",
-          phone: "phone3",
-          type: "type3",
-          branches: [],
-          products: [],
-          _rid: "string",
-          _self: "string",
-          _etag: "string",
-          _attachments: "string",
-          _ts: 3
-        }
-      ];
+      this.searchService.getContactDetails(this.branchId);
+      this.searchService.getContactsData.subscribe(contacts => {
+        this.contacts = contacts;
+      });
     });
   }
 

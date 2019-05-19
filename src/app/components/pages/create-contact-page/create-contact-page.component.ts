@@ -7,10 +7,10 @@ import { Product } from 'src/app/shared/models/userdata.model';
   templateUrl: './create-contact-page.component.html',
   styleUrls: ['./create-contact-page.component.scss']
 })
-export class CreateContactPageComponent implements OnInit {
-  
+export class CreateContactPageComponent implements OnInit {  
   public branchName: string = 'Atlanta';
   private branchId: string;
+
   public availableProducts: Product[] = [];
 
   public firstName: string;
@@ -71,7 +71,7 @@ export class CreateContactPageComponent implements OnInit {
       }
     ];
   }
-  
+
   public onCreateContact() {
     console.log('onCreateContact', this.firstName, this.lastName, this.branchName, this.emailAddress, this.phoneNumber, this.selectedProducts);
     this.router.navigateByUrl('/branches/' + this.branchId || '');
