@@ -52,8 +52,8 @@
         >
           <span class="card-header-item-container">
             <span class="card-header-item"> {{ contact.name }} </span>
-            <span class="card-header-item"> {{ contact.email }} </span>
-            <span class="card-header-item"> {{ contact.phone }} </span>
+            <span class="card-header-item"><a href='mailto:{{ contact.email }}'> {{ contact.email }} </a> </span>
+            <span class="card-header-item"><a href='tel:{{ contact.phone }}'> {{ contact.phone }} </a> </span>
             <span class="card-header-item">
               <span *ngFor="let product of contact.products">
                 {{ product.name }}
@@ -68,11 +68,11 @@
           <div class="card-body">
             <div class="card-body-item">
               <fa class="card-body-icon" name="phone"></fa>
-              <span> {{ contact.phone }} </span>
+              <span><a href='tel:{{ contact.phone }}'> {{ contact.phone }} </a> </span>
             </div>
             <div class="card-body-item">
               <fa class="card-body-icon" name="envelope"></fa>
-              <span> {{ contact.email }} </span>
+              <span> <a href='mailto:{{ contact.email }}'> {{ contact.email }} </a> </span>
             </div>
             <div class="card-body-item">
               <fa class="card-body-icon" name="bookmark"></fa>
