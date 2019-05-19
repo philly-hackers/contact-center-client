@@ -1,3 +1,11 @@
+export interface ProductData {
+  id: string;
+  name: string;
+  category: string;
+  branches: Branch[];
+  isActive?: any;
+}
+
 export interface ProductAddUpdateResponse {
   id: string;
   name: string;

@@ -1,33 +1,18 @@
 <div class="page-body">
-  <a *ngIf="branchId" [routerLink]="getBranchRoute()"
-    >Return to Branch Details...</a
-  >
-
+  <a *ngIf="branchId" [routerLink]="getBranchRoute()">Return to Branch Details...</a>
   <h1 class="mb-4">Create Contact</h1>
-
   <div class="row">
     <div class="col-md-6">
       <label for="firstName">First Name</label>
       <div class="input-group mb-3">
         <input
-          class="form-control"
-          type="text"
-          id="firstName"
-          [(ngModel)]="firstName"
-          placeholder="e.g. Agent"
-        />
+          class="form-control" type="text" id="firstName" [(ngModel)]="firstName" placeholder="e.g. Agent" />
       </div>
     </div>
     <div class="col-md-6">
       <label for="lastName">Last Name</label>
       <div class="input-group mb-3">
-        <input
-          class="form-control"
-          type="text"
-          id="lastName"
-          [(ngModel)]="lastName"
-          placeholder="e.g. Smith"
-        />
+        <input class="form-control" type="text" id="lastName" [(ngModel)]="lastName" placeholder="e.g. Smith" />
       </div>
     </div>
   </div>
@@ -36,11 +21,7 @@
     <div class="col-md-12">
       <label for="contactType">Type</label>
       <div class="input-group mb-3">
-        <select
-          class="custom-select"
-          id="contactType"
-          [(ngModel)]="contactType"
-        >
+        <select class="custom-select" id="contactType" [(ngModel)]="contactType" >
           <option selected disabled [value]="undefined">Choose One...</option>
           <option>Marketing Rep</option>
           <option>Underwriter</option>
@@ -53,27 +34,13 @@
     <div class="col-md-6">
       <label for="phoneNumber"> Phone Number</label>
       <div class="input-group mb-3">
-        <input
-          class="form-control"
-          type="tel"
-          id="phoneNumber"
-          [(ngModel)]="phoneNumber"
-          placeholder="123-456-7890"
-        />
+        <input class="form-control" type="tel" id="phoneNumber" [(ngModel)]="phoneNumber" placeholder="123-456-7890" />
       </div>
     </div>
     <div class="col-md-6">
-      <label for="emailAddress">
-        Email Address</label
-      >
+      <label for="emailAddress">Email Address</label>
       <div class="input-group mb-3">
-        <input
-          class="form-control"
-          type="email"
-          id="emailAddress"
-          [(ngModel)]="emailAddress"
-          placeholder="chubbAcc1@test.com"
-        />
+        <input class="form-control" type="email" id="emailAddress" [(ngModel)]="emailAddress" placeholder="chubbAcc1@test.com" />
       </div>
     </div>
   </div>
@@ -82,13 +49,7 @@
     <div class="col-12">
       <label for="branchName">Branch Name</label>
       <div class="input-group mb-3">
-        <input
-          disabled
-          class="form-control"
-          type="text"
-          id="branchName"
-          [(ngModel)]="branchName"
-        />
+        <input disabled class="form-control" type="text" id="branchName" [(ngModel)]="branchName" />
       </div>
     </div>
   </div>
@@ -98,13 +59,9 @@
       <label for="branchProducts">Select the products that apply...</label>
     </div>
     <div class="col-12">
-      <select
-        *ngIf="availableProducts.length"
-        multiple
-        [size]="availableProducts.length > 6 ? 6 : availableProducts.length"
-        [(ngModel)]="selectedProducts"
-      >
-        <option *ngFor="let product of availableProducts" [value]="product.id">
+      <select *ngIf="availableProducts.length" multiple [size]="availableProducts.length > 6 ? 6 : availableProducts.length" 
+        [(ngModel)]="selectedProducts">
+        <option *ngFor="let product of availableProducts" [value]="product.id" (click)="addThisProduct(product)">
           {{ product.name }}
         </option>
       </select>

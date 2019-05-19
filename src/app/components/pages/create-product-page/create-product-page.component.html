@@ -3,15 +3,8 @@
 
   <label for="productName">  Product Name</label>
   <div class="input-group mb-3">
-    <input
-      class="form-control"
-      type="text"
-      id="productName"
-      [(ngModel)]="productName"
-      placeholder="e.g. Auto Insurance"
-    />
+    <input class="form-control" type="text" id="productName" [(ngModel)]="productName" placeholder="e.g. Auto Insurance" />
   </div>
-
   <button class="btn btn-dark btn-purple mt-3" (click)="onCreateProduct()">
     Create Product
   </button>

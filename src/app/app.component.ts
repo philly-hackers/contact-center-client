@@ -23,14 +23,15 @@ export class AppComponent implements OnInit {
   value = 50;
   bufferValue = 75;
 
-  constructor(private router: Router, private broadcaster: Broadcaster, private searchService: SearchService, private contextService: ContextService) {
+  constructor(private router: Router, private broadcaster: Broadcaster, 
+    private searchService: SearchService, private contextService: ContextService) {
   }
 
   ngOnInit() {
     this.router.events.subscribe(v => {
       this.isLoggedIn = this.contextService.auth && this.contextService.auth !== 'false';
-      
-      if(this.isLoggedIn) {
+
+      if (this.isLoggedIn) {
         this.username = this.contextService.auth;
       }
     });

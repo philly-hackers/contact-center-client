@@ -2,19 +2,45 @@ import { Injectable } from '@angular/core';
 import { DataService } from './data.service';
 import { Broadcaster } from './broadcaster.service';
 import { BehaviorSubject } from 'rxjs';
-import { ProductAddUpdateResponse } from '../models/productData.model';
+import { ProductData, ProductAddUpdateResponse } from '../models/productData.model';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ProductService {
-  branchPostURL = 'https://chubbcontactcenterapi.azurewebsites.net/api/product';
+  branchPostURL = 'https://chubbcontactcenterapi.azurewebsites.net/api/product/';
+  baseProductURL = 'https://chubbcontactcenterapi.azurewebsites.net/api/product/branch/id=';
   public addProductResponse: BehaviorSubject<ProductAddUpdateResponse> = new BehaviorSubject<ProductAddUpdateResponse>( null );
+  public productData: BehaviorSubject<ProductData> = new BehaviorSubject<ProductData>(null);
+  public allProductsData: BehaviorSubject<ProductData[]> = new BehaviorSubject<ProductData[]>([]);
+  public productsByBranchData: BehaviorSubject<ProductData[]> = new BehaviorSubject<ProductData[]>([]);
 
   constructor(private dataService: DataService, private broadcaster: Broadcaster) { }
 
-  get addProductData() {
-    return this.addProductResponse.asObservable();
+  get addProductsData() {
+    return this.allProductsData.asObservable();
+  }
+
+  get getProductsDataByBranch() {
+    return this.productsByBranchData.asObservable();
+  }
+
+  getAllProducts() {
+    this.dataService.getRequest(this.branchPostURL, '').subscribe((data) => {
+      this.allProductsData.next(data);
+    });
+  }
+
+  getProductsByBranchId(params: string) {
+    this.dataService.getRequest(this.baseProductURL, params).subscribe((data) => {
+      this.productsByBranchData.next(data);
+    });
+  }
+
+  getProductsByBranchName(params: string) {
+    this.dataService.getRequest(this.baseProductURL, params).subscribe((data) => {
+      this.productsByBranchData.next(data);
+    });
   }
 
   addNewProduct(params: object) {

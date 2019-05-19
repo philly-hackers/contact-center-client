@@ -9,6 +9,8 @@ import { BehaviorSubject } from 'rxjs';
 })
 export class ContactService {
   branchPostURL = 'https://chubbcontactcenterapi.azurewebsites.net/api/contact/';
+  baseContactURL = 'https://chubbcontactcenterapi.azurewebsites.net/api/contact/id=';
+
   public addContactResponse: BehaviorSubject<ContactAddUpdateResponse> = new BehaviorSubject<ContactAddUpdateResponse>( null );
   public contactData: BehaviorSubject<ContactData> = new BehaviorSubject<ContactData>(null);
 
