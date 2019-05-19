@@ -8,8 +8,8 @@ import { Product } from 'src/app/shared/models/userdata.model';
   styleUrls: ['./create-contact-page.component.scss']
 })
 export class CreateContactPageComponent implements OnInit {
-  
-  public branchName: string = 'Atlanta';
+
+  public branchName = 'Atlanta';
   public availableProducts: Product[] = [];
 
   public firstName: string;
@@ -19,7 +19,7 @@ export class CreateContactPageComponent implements OnInit {
 
   // Array of ids of products selected
   public selectedProducts: string[];
-  
+
   constructor(private router: Router) {}
 
   ngOnInit() {
@@ -62,9 +62,11 @@ export class CreateContactPageComponent implements OnInit {
       }
     ];
   }
-  
+
   public onCreateContact() {
-    console.log('onCreateContact', this.firstName, this.lastName, this.branchName, this.emailAddress, this.phoneNumber, this.selectedProducts);
+    console.log('onCreateContact',
+    this.firstName, this.lastName, this.branchName, this.emailAddress, this.phoneNumber, this.selectedProducts);
+
     /* branch id */
     this.router.navigateByUrl('/branches/' + '1');
   }

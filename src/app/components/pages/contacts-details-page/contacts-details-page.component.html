@@ -1,14 +1,13 @@
 <div class="page-body">
-
-<h1>Contacts Details Page</h1>
-<div *ngIf="contactId && contact">
-    <h2>{{ contact.name }}</h2>
-    <div>Email Address: {{ contact.email }}</div>
-    <div>Phone Number: {{ contact.phone }}</div>
-    <div>Branch: {{branch.name}}</div>
-    <div>Products</div>
-    <div>
-        <span *ngFor="let product of contact.products"> {{product.name}} </span>
+    <h1>Contacts Details Page</h1>
+    <div *ngIf="contactId && contact">
+        <h2>{{ contact.name }}</h2>
+        <div>Email Address: {{ contact.email }}</div>
+        <div>Phone Number: {{ contact.phone }}</div>
+        <div>Branch: {{branch.name}}</div>
+        <div>Products</div>
+        <div>
+            <span *ngFor="let product of contact.products"> {{product.name}} </span>
+        </div>
     </div>
-</div>
 </div>

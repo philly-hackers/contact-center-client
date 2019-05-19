@@ -27,8 +27,8 @@ export class BranchesPageComponent implements OnInit, OnDestroy {
     });
   }
 
-  public navigateToBranchDetailsPage(branchId) {
-    this.router.navigateByUrl('/branches/' + branchId);
+  public navigateToBranchDetailsPage(selectedBranchId) {
+    this.router.navigateByUrl('/branches/' + selectedBranchId);
   }
 
   public navigateToCreateBranch() {
