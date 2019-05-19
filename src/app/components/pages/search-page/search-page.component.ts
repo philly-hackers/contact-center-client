@@ -2,14 +2,17 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Broadcaster } from '../../../shared/services/broadcaster.service';
 import { SearchService } from '../../../search.service';
 import { Branch, Product, Contact } from '../../../shared/models/userdata.model';
-import { of } from 'rxjs';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'search-page',
   templateUrl: './search-page.component.html',
   styleUrls: ['./search-page.component.scss']
 })
+
 export class SearchPageComponent implements OnInit, OnDestroy {
+  subscriptions: Subscription[] = [];
+
   public branches: Branch[] = [];
   public selectedBranchId = null;
   private selectedBranch = null;
@@ -29,25 +32,22 @@ export class SearchPageComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.searchService.getBranchDetails();
-
     this.searchService.getBranchesData.subscribe(data => {
       this.branches = data;
     });
 
     this.searchService.getContactsData.subscribe(contacts => {
-      let newProductListObject = {};
+      const newProductListObject = {};
 
       contacts.forEach(contact => {
-        contact.products.forEach(v => {
-          newProductListObject[v.id] = v;
+        contact.products.forEach(product => {
+          newProductListObject[product.id] = product;
         });
       });
 
       this.products = Object.values(newProductListObject);
-
       this.contacts = contacts;
       this.onProductSelect('All');
-
       this.loading = false;
     });
   }
@@ -59,15 +59,12 @@ export class SearchPageComponent implements OnInit, OnDestroy {
     this.products = [];
   }
 
-  onBranchSelect(branchId) {
+  onBranchSelect(branchId: string) {
     console.log('selected branch', branchId);
 
-    let newBranch = this.branches.find(branch => branch.id == branchId) || null;
+    const newBranch = this.branches.find(branch => branch.id === branchId) || null;
 
-    if (
-      newBranch &&
-      (this.selectedBranch === null || this.selectedBranch.id !== newBranch)
-    ) {
+    if ( newBranch && (this.selectedBranch === null || this.selectedBranch.id !== newBranch) ) {
       this.selectedBranchId = branchId;
       this.selectedBranch = newBranch;
       this.resetFields();
@@ -78,11 +75,9 @@ export class SearchPageComponent implements OnInit, OnDestroy {
     }
   }
 
-  onProductSelect(productId) {
+  onProductSelect(productId: string) {
     console.log('selected product', productId, this.products);
-
-    let newProduct =
-      this.products.find(products => products.id == productId) || null;
+    const newProduct = this.products.find(products => products.id === productId) || null;
 
     if (productId === 'All') {
       this.displayedContacts = this.contacts;

@@ -4,26 +4,16 @@
       <h1>Manage Branches</h1>
     </div>
     <div class="widget-body">
-      <button
-        class="btn btn-dark btn-purple"
-        (click)="navigateToCreateBranch()"
-      >
+      <button class="btn btn-dark btn-purple" (click)="navigateToCreateBranch()">
         <fa name="plus"></fa> Create New Branch
       </button>
-
       <h2 class="mt-4 mb-3">Browse Branches</h2>
-
       <div>
-        <div
-          *ngFor="let branch of branches"
-          (click)="navigateToBranchDetailsPage(branch.id)"
-          class="card"
-          tabindex="0"
-        >
+        <div *ngFor="let branch of branches" (click)="navigateToBranchDetailsPage(branch.id)" class="card" tabindex="0">
           <div class="card-header d-flex">
             <span class="card-header-item-container">
-              <span class="card-header-item d-flex col-12 col-md-6"> {{ branch.name }} </span>
-              <span class="card-header-item d-md-flex col-md-6"> {{ branch.address }} </span>
+              <span class="card-header-item d-flex col-12 col-md-4"> {{ branch.name }} </span>
+              <span class="card-header-item d-md-flex col-md-8"> {{ branch.address }} </span>
             </span>
             <span class="card-header-collapse-icon">
               <fa name="trash" (click)="deleteBranch($event, branch.id)"></fa>
@@ -33,7 +23,6 @@
         </div>
       </div>
     </div>
-
     <div (click)="addBranch()">Create Branch</div>
     <div (click)="updateBranch()">Delate/Update Branch</div>
   </div>
