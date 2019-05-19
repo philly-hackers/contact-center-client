@@ -4,8 +4,13 @@
       <h1>Manage Branches</h1>
     </div>
     <div class="widget-body">
-      <button class="btn btn-dark btn-purple"  (click)="navigateToCreateBranch()"> <fa name="plus"></fa> Create New Branch</button>
-        
+      <button
+        class="btn btn-dark btn-purple"
+        (click)="navigateToCreateBranch()"
+      >
+        <fa name="plus"></fa> Create New Branch
+      </button>
+
       <h2 class="mt-4 mb-3">Browse Branches</h2>
 
       <div>
@@ -27,5 +32,8 @@
         </div>
       </div>
     </div>
+
+    <div (click)="addBranch()">Create Branch</div>
+    <div (click)="updateBranch()">Delate/Update Branch</div>
   </div>
 </div>

@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { DataService } from './shared/services/data.service';
 import { Broadcaster } from './shared/services/broadcaster.service';
 import { SearchService } from './search.service';
-import { ContextService } from './services/context.service';
+import { ContextService } from './shared/services/context.service';
 
 
 @Component({

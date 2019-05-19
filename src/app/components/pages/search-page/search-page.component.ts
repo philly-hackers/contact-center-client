@@ -1,25 +1,21 @@
-import { Component } from "@angular/core";
-import { Broadcaster } from "../../../shared/services/broadcaster.service";
-import { SearchService } from "../../../search.service";
-import {
-  Branch,
-  Product,
-  Contact
-} from "../../../shared/models/userdata.model";
-import { of } from "rxjs";
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Broadcaster } from '../../../shared/services/broadcaster.service';
+import { SearchService } from '../../../search.service';
+import { Branch, Product, Contact } from '../../../shared/models/userdata.model';
+import { of } from 'rxjs';
 
 @Component({
-  selector: "search-page",
-  templateUrl: "./search-page.component.html",
-  styleUrls: ["./search-page.component.scss"]
+  selector: 'search-page',
+  templateUrl: './search-page.component.html',
+  styleUrls: ['./search-page.component.scss']
 })
-export class SearchPageComponent {
+export class SearchPageComponent implements OnInit, OnDestroy {
   public branches: Branch[] = [];
   public selectedBranchId = null;
   private selectedBranch = null;
 
   public products: Product[] = [];
-  public selectedProductId = "All";
+  public selectedProductId = 'All';
 
   private contacts: Contact[] = [];
   public displayedContacts = [];
@@ -50,21 +46,21 @@ export class SearchPageComponent {
       this.products = Object.values(newProductListObject);
 
       this.contacts = contacts;
-      this.onProductSelect("All");
+      this.onProductSelect('All');
 
       this.loading = false;
     });
   }
 
   resetFields() {
-    this.selectedProductId = "All";
+    this.selectedProductId = 'All';
     this.contacts = [];
     this.displayedContacts = [];
     this.products = [];
   }
 
   onBranchSelect(branchId) {
-    console.log("selected branch", branchId);
+    console.log('selected branch', branchId);
 
     let newBranch = this.branches.find(branch => branch.id == branchId) || null;
 
@@ -83,12 +79,12 @@ export class SearchPageComponent {
   }
 
   onProductSelect(productId) {
-    console.log("selected product", productId, this.products);
+    console.log('selected product', productId, this.products);
 
     let newProduct =
       this.products.find(products => products.id == productId) || null;
 
-    if (productId === "All") {
+    if (productId === 'All') {
       this.displayedContacts = this.contacts;
     } else if (newProduct) {
       this.displayedContacts = this.contacts.filter(contact => {
@@ -102,6 +98,10 @@ export class SearchPageComponent {
   }
 
   public getTarget(id, prependHash) {
-    return prependHash ? "#" + 'ContactItem' + id : 'ContactItem' + id;
+    return prependHash ? '#' + 'ContactItem' + id : 'ContactItem' + id;
+  }
+
+  ngOnDestroy() {
+
   }
 }
