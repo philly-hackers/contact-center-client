@@ -25,7 +25,12 @@ export class DataService {
     );
   }
 
-  pullRequest(): Observable<any> {
-    return this.http.get<any>('/api/comments');
+  putRequest(url: string, params: any): Observable<any> {
+    const _url = (url && url.length > 0) ? url : this.DATA_SOURCE;
+
+    return this.http.put<any>(_url, params, {
+        headers : new HttpHeaders({ 'Content-Type': 'application/json'})
+      }
+    );
   }
 }

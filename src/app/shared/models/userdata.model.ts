@@ -36,3 +36,15 @@ export interface Branch {
   address?: any;
   geolocation?: any;
 }
+
+export interface AddBranchResponse {
+  address: string;
+  geolocation: string;
+  id: string;
+  isactive?: any;
+  name: string;
+  _etag: string;
+  _rid: string;
+  _self: string;
+  _ts: number;
+}

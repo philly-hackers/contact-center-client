@@ -34,3 +34,15 @@
     "_ts": 1558198941
   }
 ]
+
+{
+  "address": "11575 Great Oaks Way ↵Suite 200↵Alpharetta, GA 30022 ↵T 678-795-4000",
+  "geolocation": "34.0603291,-84.2700786",
+  "id": "07a4011b-59a7-46c1-97b3-de42358c4519",
+  "isactive": null,
+  "name": "Atlanta",
+  "_etag": "9200579d-0000-1a00-0000-5ce0c7050000",
+  "_rid": "tcdhALnR4rw5AAAAAAAAAA==",
+  "_self": "dbs/tcdhAA==/colls/tcdhALnR4rw=/docs/tcdhALnR4rw5AAAAAAAAAA==/",
+  "_ts": 1558234885
+}
