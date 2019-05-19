@@ -8,9 +8,12 @@ import { Router } from '@angular/router';
 })
 export class CreateProductPageComponent {
 
+  public productName: string;
+
   constructor(private router: Router) {}
 
   public onCreateProduct() {
+    console.log('onCreateProduct', this.productName);
     this.router.navigateByUrl('/branches');
   }
 }
