@@ -7,7 +7,7 @@
 }
 
 .nav-link {
-  font-size: 20px;
+  font-size: 17px;
 }
 
 .navbar {
@@ -23,6 +23,10 @@
 // Large devices (desktops, 992px and up)
 @media (min-width: 992px) {
   .nav-user-data {
-    margin: 0 25px;
+    margin: 0 15px;
+    max-width: 120px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
   }
 }
