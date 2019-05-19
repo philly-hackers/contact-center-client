@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Broadcaster } from '../shared/services/broadcaster.service';
-import { BrachesService } from './braches.service';
+import { BranchesService } from '../shared/services/branches.service';
 
 @Component({
   selector: 'app-branches',
@@ -9,7 +9,7 @@ import { BrachesService } from './braches.service';
 })
 export class BranchesComponent implements OnInit {
 
-  constructor( private branchService: BrachesService, private broadcaster: Broadcaster) { }
+  constructor( private branchService: BranchesService, private broadcaster: Broadcaster) { }
 
   ngOnInit() {
 

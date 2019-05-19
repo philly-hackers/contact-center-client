@@ -16,7 +16,7 @@ export class BranchesPageComponent implements OnInit, OnDestroy {
   subscriptions: Subscription[] = [];
   public branches: Branch[] = [];
 
-  constructor( private branchService: BranchesService, 
+  constructor( private branchService: BranchesService,
     private broadcaster: Broadcaster, private router: Router) { }
 
   ngOnInit(): void {

@@ -12,7 +12,7 @@ export class DataService {
   getRequest(url: string, params: any): Observable<any> {
     const _url = (url && url.length > 0) ? url : this.DATA_SOURCE;
 
-    return this.http.get<any>(`${url}/${params}`);
+    return this.http.get<any>(`${url}${params}`);
   }
 
   postRequest(url: string, params: any): Observable<any> {
