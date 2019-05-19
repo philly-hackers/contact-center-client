@@ -1,10 +1,8 @@
-import { Injectable, OnInit, OnDestroy } from '@angular/core';
-import { DataService } from '../../../shared/services/data.service';
+import { OnInit, OnDestroy } from '@angular/core';
 import { Broadcaster } from '../../../shared/services/broadcaster.service';
-import { Branch, BranchAddUpdateResponse } from '../../../shared/models/userdata.model';
-import { Subscription } from 'rxjs';
-import { ProductService } from './product.service';
+import { ProductService } from '../../../shared/services/product.service';
 import { ProductAddUpdateResponse } from '../../../shared/models/productData.model';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'products-page',

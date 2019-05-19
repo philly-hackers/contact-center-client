@@ -1,10 +1,8 @@
-import { Injectable, OnInit, OnDestroy } from '@angular/core';
-import { DataService } from '../../../shared/services/data.service';
+import { OnInit, OnDestroy } from '@angular/core';
 import { Broadcaster } from '../../../shared/services/broadcaster.service';
-import { ContactData } from '../../../shared/models/contactData.model';
-import { Subscription } from 'rxjs';
-import { ContactService } from './contact.service';
+import { ContactService } from '../../../shared/services/contact.service';
 import { ContactAddUpdateResponse } from '../../../shared/models/contactData.model';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'contacts-page',

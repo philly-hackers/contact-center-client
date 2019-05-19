@@ -1,6 +1,6 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Broadcaster } from '../../../shared/services/broadcaster.service';
-import { BranchesService } from './branches.service';
+import { BranchesService } from '../../../shared/services/branches.service';
 import { BranchAddUpdateResponse } from '../../../shared/models/userdata.model';
 import { Subscription } from 'rxjs';
 

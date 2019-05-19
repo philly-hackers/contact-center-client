@@ -1,9 +1,8 @@
 import { Injectable } from '@angular/core';
-import { DataService } from '../../../shared/services/data.service';
-import { Broadcaster } from '../../../shared/services/broadcaster.service';
-import { ProductData } from '../../../shared/models/productData.model';
+import { DataService } from './data.service';
+import { Broadcaster } from './broadcaster.service';
 import { BehaviorSubject } from 'rxjs';
-import { ProductAddUpdateResponse } from '../../../shared/models/productData.model';
+import { ProductAddUpdateResponse } from '../models/productData.model';
 
 @Injectable({
   providedIn: 'root'

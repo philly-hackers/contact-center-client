@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
-import { DataService } from '../../../shared/services/data.service';
-import { Broadcaster } from '../../../shared/services/broadcaster.service';
-import { Branch, BranchAddUpdateResponse } from '../../../shared/models/userdata.model';
+import { DataService } from './data.service';
+import { Broadcaster } from './broadcaster.service';
+import { BranchAddUpdateResponse } from '../models/userdata.model';
 import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
