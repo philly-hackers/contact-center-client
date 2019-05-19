@@ -11,9 +11,8 @@ export class DataService {
 
   getRequest(url: string, params: any): Observable<any> {
     const _url = (url && url.length > 0) ? url : this.DATA_SOURCE;
-    const getURL = _url + params;
-    // const getURL = this.DATA_SOURCE;
-    return this.http.get<any>(getURL);
+
+    return this.http.get<any>(`${url}/${params}`);
   }
 
   postRequest(url: string, params: any): Observable<any> {
@@ -28,7 +27,7 @@ export class DataService {
   putRequest(url: string, params: any): Observable<any> {
     const _url = (url && url.length > 0) ? url : this.DATA_SOURCE;
 
-    return this.http.put<any>(_url, params, {
+    return this.http.put<any>(`${url}/${params.id}`, params, {
         headers : new HttpHeaders({ 'Content-Type': 'application/json'})
       }
     );

@@ -37,7 +37,7 @@ export interface Branch {
   geolocation?: any;
 }
 
-export interface AddBranchResponse {
+export interface BranchAddUpdateResponse {
   address: string;
   geolocation: string;
   id: string;
