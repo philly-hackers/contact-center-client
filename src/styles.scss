@@ -6,11 +6,15 @@ body {
   font-family: "PublicoText-Roman";
 }
 
+a {
+  color: gray;
+}
+
 select[multiple] {
   width: 100%;
   border-radius: 5px;
   height: 100%;
-  overflow-y: scroll;
+  overflow-y: auto;
 }
 
 select[multiple]:focus {
@@ -18,24 +22,24 @@ select[multiple]:focus {
 }
 
 select[multiple] option {
-    border-bottom: 1px solid lightgray !important;
-    cursor: pointer;
-    padding: 20px;
-    border-radius: 0;
-    color: black;
-    background-color: white;
+  border-bottom: 1px solid lightgray !important;
+  cursor: pointer;
+  padding: 20px;
+  border-radius: 0;
+  color: black;
+  background-color: white;
 }
 
 select[multiple] option:focus {
-    border-bottom: 1px solid #6e27c555 !important;
+  border-bottom: 1px solid #6e27c555 !important;
 }
 
 select[multiple] :first-child {
-    border-radius: 5px 5px 0 0;
+  border-radius: 5px 5px 0 0;
 }
 
 select[multiple] option:last-child {
-    border-bottom: none !important;
+  border-bottom: none !important;
 }
 
 .form-control:focus,
@@ -109,28 +113,49 @@ label {
 
 .card-header {
   cursor: pointer;
-  padding-top: 20px;
-  padding-bottom: 20px;
   background-color: #6e27c5;
   color: white;
   border-radius: 0;
 }
 
 .card-header-item {
-  width: 20%;
+  flex-grow: inherit;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+  display: none;
+}
+
+.card-header-item a {
+  color: white !important;
 }
 
 .card-header-item-container {
   flex-grow: 1;
   display: flex;
-  width: calc(100% - 30px);
+  align-items: center;
+  width: calc(100% - 100px);
 }
 
 .card-header-collapse-icon {
-  width: 30px;
+  width: 100px;
+  font-size: 1.5em;
+  align-items: center;
+  display: flex;
+  justify-content: space-around;
+}
+
+.card-header-collapse-icon fa {
+  display: flex;
+  height: 45px;
+  justify-content: center;
+  align-items: center;
+  width: 45px;
+}
+
+.card-header-collapse-icon fa:hover,
+.card-header-collapse-icon fa:focus {
+  background-color: #00000055;
 }
 
 .card-body-icon {

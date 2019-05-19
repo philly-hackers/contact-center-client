@@ -12,10 +12,11 @@
         <div *ngFor="let branch of branches" (click)="navigateToBranchDetailsPage(branch.id)" class="card" tabindex="0">
           <div class="card-header d-flex">
             <span class="card-header-item-container">
-              <span class="card-header-item"> {{ branch.name }} </span>
-              <span class="card-header-item"> {{ branch.address }} </span>
+              <span class="card-header-item d-flex col-12 col-md-4"> {{ branch.name }} </span>
+              <span class="card-header-item d-md-flex col-md-8"> {{ branch.address }} </span>
             </span>
             <span class="card-header-collapse-icon">
+              <fa name="trash" (click)="deleteBranch($event, branch.id)"></fa>
               <fa name="angle-right"></fa>
             </span>
           </div>

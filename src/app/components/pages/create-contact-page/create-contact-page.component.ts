@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { Product } from 'src/app/shared/models/userdata.model';
 
 @Component({
@@ -7,9 +7,10 @@ import { Product } from 'src/app/shared/models/userdata.model';
   templateUrl: './create-contact-page.component.html',
   styleUrls: ['./create-contact-page.component.scss']
 })
-export class CreateContactPageComponent implements OnInit {
+export class CreateContactPageComponent implements OnInit {  
+  public branchName: string = 'Atlanta';
+  private branchId: string;
 
-  public branchName = 'Atlanta';
   public availableProducts: Product[] = [];
 
   public firstName: string;
@@ -19,10 +20,18 @@ export class CreateContactPageComponent implements OnInit {
 
   // Array of ids of products selected
   public selectedProducts: string[];
+  
+  constructor(private router: Router, private route: ActivatedRoute) {}
 
-  constructor(private router: Router) {}
+  getBranchRoute() {
+    return this.branchId ? '/branches/' +  this.branchId : '/branches';
+  }
 
   ngOnInit() {
+    this.route.paramMap.subscribe(params => {
+      this.branchId = params.get("branchId");
+    });
+
     /* Replace with current branch context */
     this.branchName = 'Atlanta';
 
@@ -64,11 +73,8 @@ export class CreateContactPageComponent implements OnInit {
   }
 
   public onCreateContact() {
-    console.log('onCreateContact',
-    this.firstName, this.lastName, this.branchName, this.emailAddress, this.phoneNumber, this.selectedProducts);
-
-    /* branch id */
-    this.router.navigateByUrl('/branches/' + '1');
+    console.log('onCreateContact', this.firstName, this.lastName, this.branchName, this.emailAddress, this.phoneNumber, this.selectedProducts);
+    this.router.navigateByUrl('/branches/' + this.branchId || '');
   }
 
 }

@@ -34,6 +34,7 @@ const routes: Routes = [
   { path: 'login', component: LoginPageComponent },
   { path: 'contacts', component: ContactsPageComponent },
   { path: 'contacts/:contactId', component: ContactsDetailsPageComponent },
+  { path: 'branches/:branchId/create-contact', component: CreateContactPageComponent },
   { path: 'branches', component: BranchesPageComponent },
   { path: 'branches/:branchId', component: BranchesDetailsPageComponent },
   { path: 'products', component: ProductsPageComponent },
@@ -42,6 +43,7 @@ const routes: Routes = [
   { path: 'create-branch', component: CreateBranchPageComponent },
   { path: 'create-product', component: CreateProductPageComponent },
   { path: 'search', component: SearchPageComponent },
+  { path: 'branches/:branchId/:contactId', component: ContactsDetailsPageComponent },
   { path: '', redirectTo: '/search', pathMatch: 'full' }
 ];
 

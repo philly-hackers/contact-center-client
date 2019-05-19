@@ -52,6 +52,13 @@ export class BranchesPageComponent implements OnInit, OnDestroy {
     );
   }
 
+  deleteBranch(event, branchId) {
+    event.stopPropagation();
+    console.log('deleteBranch', branchId);
+    /* Call delete branch here */
+    /* Then should display new list of branches*/
+  }
+
   ngOnDestroy() {
     this.subscriptions.forEach(subscription => {
       subscription.unsubscribe();
