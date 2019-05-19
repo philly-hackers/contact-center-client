@@ -1,14 +1,14 @@
 import { Injectable } from '@angular/core';
 import { DataService } from '../../../shared/services/data.service';
 import { Broadcaster } from '../../../shared/services/broadcaster.service';
-import { ContactData } from '../../../shared/models/contactData.model';
+import { ContactAddUpdateResponse } from '../../../shared/models/contactData.model';
 import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ContactService {
-  branchPostURL = 'https://chubbcontactcenterapi.azurewebsites.net/api/branch';
+  branchPostURL = 'https://chubbcontactcenterapi.azurewebsites.net/api/contact';
   public addContactResponse: BehaviorSubject<ContactAddUpdateResponse> = new BehaviorSubject<ContactAddUpdateResponse>( null );
 
   constructor(private dataService: DataService, private broadcaster: Broadcaster) { }

@@ -4,6 +4,7 @@ import { Broadcaster } from '../../../shared/services/broadcaster.service';
 import { Branch, BranchAddUpdateResponse } from '../../../shared/models/userdata.model';
 import { Subscription } from 'rxjs';
 import { ProductService } from './product.service';
+import { ProductAddUpdateResponse } from '../../../shared/models/productData.model';
 
 @Component({
   selector: 'products-page',

@@ -14,7 +14,22 @@ export interface ContactData {
   _ts: number;
 }
 
-interface Product {
+export interface ContactAddUpdateResponse {
+  id: string;
+  name: string;
+  email: string;
+  phone: string;
+  type: string;
+  branches: Branch[];
+  products: Product[];
+  isactive: string;
+  _rid: string;
+  _self: string;
+  _ts: number;
+  _etag: string;
+ }
+
+ interface Product {
   id: string;
   name?: any;
   category?: any;

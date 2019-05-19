@@ -3,12 +3,13 @@ import { DataService } from '../../../shared/services/data.service';
 import { Broadcaster } from '../../../shared/services/broadcaster.service';
 import { ProductData } from '../../../shared/models/productData.model';
 import { BehaviorSubject } from 'rxjs';
+import { ProductAddUpdateResponse } from '../../../shared/models/productData.model';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ProductService {
-  branchPostURL = 'https://chubbcontactcenterapi.azurewebsites.net/api/branch';
+  branchPostURL = 'https://chubbcontactcenterapi.azurewebsites.net/api/product';
   public addProductResponse: BehaviorSubject<ProductAddUpdateResponse> = new BehaviorSubject<ProductAddUpdateResponse>( null );
 
   constructor(private dataService: DataService, private broadcaster: Broadcaster) { }
