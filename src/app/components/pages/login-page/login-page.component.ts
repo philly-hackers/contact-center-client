@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import {Router} from '@angular/router';
-import { ContextService } from 'src/app/services/context.service';
+import { Router } from '@angular/router';
+import { ContextService } from '../../../shared/services/context.service';
 
 @Component({
   selector: 'login-page',

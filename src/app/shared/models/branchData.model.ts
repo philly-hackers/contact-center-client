@@ -1,4 +1,4 @@
-export interface Contact {
+export interface BranchData {
   id: string;
   name: string;
   email: string;
@@ -35,6 +35,7 @@ export interface Branch {
   name?: any;
   address?: any;
   geolocation?: any;
+  isactive: string;
 }
 
 export interface BranchAddUpdateResponse {
