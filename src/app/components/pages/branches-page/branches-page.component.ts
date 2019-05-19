@@ -1,8 +1,11 @@
+
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Broadcaster } from '../../../shared/services/broadcaster.service';
 import { BranchesService } from '../../../shared/services/branches.service';
 import { BranchAddUpdateResponse } from '../../../shared/models/userdata.model';
 import { Subscription } from 'rxjs';
+import { Router } from '@angular/router';
+import { Branch } from 'src/app/shared/models/userdata.model';
 
 @Component({
   selector: 'branches-page',
@@ -11,10 +14,41 @@ import { Subscription } from 'rxjs';
 })
 export class BranchesPageComponent implements OnInit, OnDestroy {
   subscriptions: Subscription[] = [];
+  public branches: Branch[] = [];
 
-  constructor( private branchService: BranchesService, private broadcaster: Broadcaster) { }
+  constructor( private branchService: BranchesService, 
+    private broadcaster: Broadcaster, private router: Router) { }
 
-  ngOnInit() {
+  ngOnInit(): void {
+    /* Replace with get all branches */
+    this.branches = [
+      {
+        id: '1',
+        name: 'branch1',
+        address: 'addr1',
+        geolocation: 'x y'
+      },
+      {
+        id: '2',
+        name: 'branch2',
+        address: 'addr2',
+        geolocation: 'x y'
+      },
+      {
+        id: '3',
+        name: 'branch3',
+        address: 'addr3',
+        geolocation: 'x y'
+      }
+    ]
+  }
+
+  public navigateToBranchDetailsPage(branchId) {
+    this.router.navigateByUrl('/branches/' + branchId);
+  }
+
+  public navigateToCreateBranch() {
+    this.router.navigateByUrl('/create-branch');
   }
 
   addBranch(params) {

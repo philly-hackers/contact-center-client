@@ -1,4 +1,4 @@
-import { OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Broadcaster } from '../../../shared/services/broadcaster.service';
 import { ProductService } from '../../../shared/services/product.service';
 import { ProductAddUpdateResponse } from '../../../shared/models/productData.model';

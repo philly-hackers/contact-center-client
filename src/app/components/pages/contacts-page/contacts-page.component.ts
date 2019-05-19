@@ -1,4 +1,4 @@
-import { OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Broadcaster } from '../../../shared/services/broadcaster.service';
 import { ContactService } from '../../../shared/services/contact.service';
 import { ContactAddUpdateResponse } from '../../../shared/models/contactData.model';

@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import {Router} from '@angular/router';
+import { Router } from '@angular/router';
+import { ContextService } from '../../../shared/services/context.service';
 
 @Component({
   selector: 'login-page',
@@ -8,9 +9,12 @@ import {Router} from '@angular/router';
 })
 export class LoginPageComponent {
 
-  constructor(private router: Router) {}
+  public username: string;
+
+  constructor(private router: Router, private contextService: ContextService) {}
 
   public login() {
-    this.router.navigateByUrl('/contacts');
+    this.contextService.auth = this.username;
+    this.router.navigateByUrl('/branches');
   }
 }

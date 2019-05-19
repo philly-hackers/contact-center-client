@@ -14,6 +14,7 @@ import {
   FooterComponent, SearchPageComponent } from './components';
 
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { BranchesComponent } from './branches/branches.component';
@@ -24,8 +25,10 @@ import { SearchComponent } from './search/search.component';
 import { Broadcaster } from './shared/services/broadcaster.service'
 import { DataService } from './shared/services/data.service';
 import { SearchService } from './search.service';
-import { BranchesService } from './components/pages/branches-page/branches.service'
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ContextService } from './shared/services/context.service';
+import { ContactService } from './shared/services/contact.service';
+import { ProductService } from './shared/services/product.service';
+import { BranchesService } from './shared/services/branches.service';
 
 const routes: Routes = [
   { path: 'login', component: LoginPageComponent },
@@ -80,7 +83,10 @@ const routes: Routes = [
     Broadcaster,
     DataService,
     SearchService,
-    BranchesService
+    BranchesService,
+    ContactService,
+    ProductService,
+    ContextService
   ],
   bootstrap: [AppComponent]
 })

@@ -1,2 +1,21 @@
+<div class="page-body">
+  <div class="widget-container">
+    <div class="widget-header">
+      <h1>Manage Branches</h1>
+    </div>
+    <div class="widget-body">
+      <button (click)="navigateToCreateBranch()">Create New Branch</button>
+
+      <h2>Browse Branches</h2>
+
+      <button
+        *ngFor="let branch of branches"
+        (click)="navigateToBranchDetailsPage(branch.id)"
+      >
+        {{ branch.name }} {{ branch.address }}
+      </button>
+    </div>
+  </div>
+</div>
 <div (click)="addBranch()"> Create Branch </div>
 <div (click)="updateBranch()"> Delate/Update Branch </div>

@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { DataService } from '../shared/services/data.service';
 import { Broadcaster } from '../shared/services/broadcaster.service';
 import { BrachesService } from './braches.service';
 
