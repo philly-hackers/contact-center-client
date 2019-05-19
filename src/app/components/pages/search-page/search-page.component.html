@@ -48,7 +48,7 @@
           <span class="card-header-item-container">
             <span class="card-header-item"> {{ contact.name }} </span>
             <span class="card-header-item"><a href='mailto:{{ contact.email }}'> {{ contact.email }} </a> </span>
-            <span class="card-header-item"><a href='tel:{{ contact.phone }}'> {{ contact.phone }} {{ contact.phone }}  </a> </span>
+            <span class="card-header-item"><a href='tel:{{ contact.phone }}'> {{ contact.phone }} </a> </span>
             <span class="card-header-item">
               <span *ngFor="let product of contact.products">
                 {{ product.name }}
