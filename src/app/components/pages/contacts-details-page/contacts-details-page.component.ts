@@ -13,6 +13,8 @@ export class ContactsDetailsPageComponent implements OnInit {
   public contact: Contact;
   public branch: Branch;
   public branchId: string;
+  
+  public editing = false;
 
   constructor(
     private route: ActivatedRoute,
@@ -32,11 +34,24 @@ export class ContactsDetailsPageComponent implements OnInit {
 
     this.route.paramMap.subscribe(params => {
       this.contactId = JSON.stringify(params.get('contactId')).replace(/\"/g, '');
+      this.branchId = JSON.stringify(params.get('branchId')).replace(/\"/g, '');
 
       this.contactService.getContactById(this.contactId);
       this.contactService.getContactData.subscribe(contact => {
         this.contact = contact;
       });
     });
+  }
+
+  editContact() {
+    this.editing = true;
+  }
+
+  saveContact() {
+    this.editing = false;
+  }
+
+  cancelEdit(){
+    this.editing = false;
   }
 }

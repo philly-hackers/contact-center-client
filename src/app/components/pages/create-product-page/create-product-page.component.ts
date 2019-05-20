@@ -9,18 +9,18 @@ import { SearchService } from 'src/app/search.service';
   templateUrl: './create-product-page.component.html',
   styleUrls: ['./create-product-page.component.scss']
 })
-export class CreateProductPageComponent implements OnInit, OnDestroy {
-  branches: Branch[] = [];
-  selectedBranch: Branch[] = [];
+export class CreateProductPageComponent implements OnInit {
+  
   public productName: string;
-
-  constructor(private router: Router, private branchService: BranchesService,
-              private searchService: SearchService) {}
-
+  public productBranches: string[];
+  public availableBranches: Branch[];
+  
+  constructor(private router: Router, private searchService: SearchService) {}
+  
   ngOnInit() {
     this.searchService.getBranchDetails();
-    this.searchService.getBranchesData.subscribe( branches => {
-      this.branches = branches;
+    this.searchService.getBranchesData.subscribe(data => {
+      this.availableBranches = data;
     });
   }
 
@@ -29,7 +29,7 @@ export class CreateProductPageComponent implements OnInit, OnDestroy {
     const params = {
       'name': this.productName,
       'category': 'Small Commercial',
-      'branches': this.branches,
+      'branches': this.productBranches,
       'isactive': 'true'
     };
     this.router.navigateByUrl('/branches');

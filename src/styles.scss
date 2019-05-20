@@ -6,6 +6,26 @@ body {
   font-family: "PublicoText-Roman";
 }
 
+.edit-btn {
+  padding: 0.25rem 0.5rem !important;
+  border: 1px solid #6e27c5 !important;
+  background-color: white;
+  color: #6e27c5;
+}
+
+.edit-btn:hover, edit-btn:focus {
+    background-color: #6e27c5;
+    color: white;
+  }
+
+option:hover {
+  background-color: #6e27c555 !important;
+}
+
+.card-header:hover {
+  background-color: #6e27c5ee !important;
+}
+
 .toggle-btn {
   border: 1px solid #6e27c5 !important;
   background-color: #6e27c5;
@@ -27,6 +47,10 @@ body {
 
 a {
   color: gray;
+}
+
+a:hover {
+  color: #6e27c5;
 }
 
 select[multiple] {
@@ -62,7 +86,9 @@ select[multiple] option:last-child {
 }
 
 .form-control:focus,
-select:focus, input:focus, button:focus {
+select:focus,
+input:focus,
+button:focus {
   border-color: #6e27c5 !important;
   box-shadow: 0 0 0 0.2rem #6e27c555 !important;
 }
