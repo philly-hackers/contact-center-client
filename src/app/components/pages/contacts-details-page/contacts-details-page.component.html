@@ -2,15 +2,14 @@
   <a *ngIf="branchId" [routerLink]="getBranchRoute()">Return to Branch Details...</a>
   <div *ngIf="!editing">
     <div>
-      <h1 class="d-inline">
+      <h1 class="d-inline mr-2 mb-2">
         Contact Details Page
       </h1>
-      <!-- <button
-        class="btn btn-dark btn-sm edit-btn mb-2 ml-2"
-        (click)="editContact()"
+      <button
+        class="btn btn-purple-inverse btn-sm edit-btn mb-2"
       >
         <fa name="edit"></fa> Edit
-      </button> -->
+      </button>
     </div>
     <div *ngIf="contactId && contact">
       <div>
