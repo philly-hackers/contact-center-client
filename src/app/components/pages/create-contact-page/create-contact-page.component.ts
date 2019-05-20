@@ -74,9 +74,6 @@ export class CreateContactPageComponent implements OnInit, OnDestroy {
   }
 
   public onCreateContact() {
-    console.log('onCreateContact', this.firstName, this.lastName, this.contactType,
-    this.branchName, this.emailAddress, this.emailAddress, this.userSelectedProducts);
-
     const params = {
       'name': this.firstName,
       'email': this.emailAddress,

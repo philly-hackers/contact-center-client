@@ -60,8 +60,8 @@ export class ProductsPageComponent implements OnInit, OnDestroy {
     this.productService.addNewProduct(params);
 
     this.subscriptions.push(
-      this.productService.addProductData.subscribe( (data: ProductAddUpdateResponse) => {
-        console.log('Add Product Data ' + data.name, data.id);
+      this.productService.addProductsData.subscribe(data => {
+        // console.log('Add Product Data ' + data.name, data.id);
       })
     );
   }
@@ -109,8 +109,8 @@ export class ProductsPageComponent implements OnInit, OnDestroy {
     params = params ? params : tempParams;
     this.productService.updateProduct(params);
     this.subscriptions.push(
-      this.productService.addProductData.subscribe( (data: ProductAddUpdateResponse) => {
-        console.log('Add Product Data ' + data.name, data.id);
+      this.productService.addProductsData.subscribe(data => {
+        // console.log('Add Product Data ' + data.name, data.id);
       })
     );
   }
