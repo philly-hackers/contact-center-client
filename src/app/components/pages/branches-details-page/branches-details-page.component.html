@@ -23,27 +23,24 @@
     <h3 class="mt-3 mb-2">Browse Contacts</h3>
 
     <div>
-      <div
-        *ngFor="let contact of contacts"
-        (click)="navigateToContactDetailsPage(contact.id)"
-        class="card"
-        tabindex="0"
-      >
-        <div class="card-header d-flex">
-          <span class="card-header-item-container">
-            <span class="card-header-item d-flex col-12 col-md-6">
-              {{ contact.name }}
+      <ng-container *ngFor="let contact of contacts" >
+        <div *ngIf="contact.name !== null" (click)="navigateToContactDetailsPage(contact.id)" class="card" tabindex="0">
+          <div class="card-header d-flex">
+            <span class="card-header-item-container">
+              <span class="card-header-item d-flex col-12 col-md-6">
+                {{ contact.name }}
+              </span>
+              <span class="card-header-item d-md-flex col-md-6">
+                {{ contact.type }}
+              </span>
             </span>
-            <span class="card-header-item d-md-flex col-md-6">
-              {{ contact.type }}
+            <span class="card-header-collapse-icon">
+              <fa name="trash" (click)="deleteContact($event, contact)"></fa>
+              <fa name="angle-right"></fa>
             </span>
-          </span>
-          <span class="card-header-collapse-icon">
-            <fa name="trash" (click)="deleteContact($event, contact.id)"></fa>
-            <fa name="angle-right"></fa>
-          </span>
+          </div>
         </div>
-      </div>
+    </ng-container>
     </div>
   </div>
 </div>

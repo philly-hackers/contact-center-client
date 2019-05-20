@@ -9,7 +9,7 @@ import { BehaviorSubject } from 'rxjs';
 })
 export class ContactService {
   branchPostURL = 'https://chubbcontactcenterapi.azurewebsites.net/api/contact/';
-  baseContactURL = 'https://chubbcontactcenterapi.azurewebsites.net/api/contact/id=';
+  baseContactURL = 'https://chubbcontactcenterapi.azurewebsites.net/api/contact/';
 
   public addContactResponse: BehaviorSubject<ContactAddUpdateResponse> = new BehaviorSubject<ContactAddUpdateResponse>( null );
   public contactData: BehaviorSubject<ContactData> = new BehaviorSubject<ContactData>(null);
@@ -31,7 +31,7 @@ export class ContactService {
   }
 
   updateContact(params: object) {
-    this.dataService.putRequest(this.branchPostURL, params).subscribe((data: ContactAddUpdateResponse) => {
+    this.dataService.putRequest(this.baseContactURL, params).subscribe((data: ContactAddUpdateResponse) => {
         this.addContactResponse.next(data);
     });
   }
@@ -39,6 +39,12 @@ export class ContactService {
   getContactById(params: string) {
     this.dataService.getRequest(this.branchPostURL, params).subscribe((data) => {
       this.contactData.next(data);
+    });
+  }
+
+  deleteContact(params: object) {
+    this.dataService.putRequest(this.baseContactURL, params).subscribe((data: ContactAddUpdateResponse) => {
+        this.addContactResponse.next(data);
     });
   }
 }
