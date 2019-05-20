@@ -25,7 +25,6 @@ export class BranchesDetailsPageComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.route.paramMap.subscribe(params => {
       this.branchId = JSON.stringify(params.get('branchId')).replace(/\"/g, '');
-
       this.branchService.getBranchDataById(this.branchId);
       this.branchService.getBranchData.subscribe(branch => {
         this.branch = branch;

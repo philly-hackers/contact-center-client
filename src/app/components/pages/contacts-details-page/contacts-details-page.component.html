@@ -1,45 +1,69 @@
 <div class="page-body">
   <a [routerLink]="getBranchRoute()">Return to Branch Details...</a>
-  <h1>
-    Contact Details Page
-  </h1>
-
-  <div *ngIf="contactId && contact">
-    <div class="details-container">
-      <span class="details-label"> Contact Name </span>
-      <span class="details-text"> {{ contact.name }} </span>
+  <div *ngIf="!editing">
+    <div>
+      <h1 class="d-inline">
+        Contact Details Page
+      </h1>
+      <button
+        class="btn btn-dark btn-sm edit-btn mb-2 ml-2"
+        (click)="editContact()"
+      >
+        <fa name="edit"></fa> Edit
+      </button>
     </div>
+    <div *ngIf="contactId && contact">
+      <div>
+        <div class="details-container">
+          <span class="details-label"> Contact Name </span>
+          <span class="details-text"> {{ contact.name }} </span>
+        </div>
 
-    <div class="details-container">
-      <span class="details-label"> Type </span>
-      <span class="details-text"> {{ contact.type }} </span>
+        <div class="details-container">
+          <span class="details-label"> Type </span>
+          <span class="details-text"> {{ contact.type }} </span>
+        </div>
+
+        <div class="details-container">
+          <span class="details-label"> Email Address </span>
+          <span class="details-text"> {{ contact.email }} </span>
+        </div>
+
+        <div class="details-container">
+          <span class="details-label"> Phone Number </span>
+          <span class="details-text"> {{ contact.phone }} </span>
+        </div>
+
+        <div class="details-container">
+          <span class="details-label"> Branch </span>
+          <span class="details-text"> {{ branch.name }} </span>
+        </div>
+
+        <h2 class="mt-4 mb-3">Products</h2>
+        <select
+          multiple
+          disabled
+          *ngIf="contact.products.length"
+          [size]="contact.products.length > 6 ? 6 : contact.products.length"
+        >
+          <option *ngFor="let product of contact.products" [value]="product.id">
+            {{ product.name }}
+          </option>
+        </select>
+      </div>
     </div>
+  </div>
 
-    <div class="details-container">
-      <span class="details-label"> Email Address </span>
-      <span class="details-text"> {{ contact.email }} </span>
-    </div>
-
-    <div class="details-container">
-      <span class="details-label"> Phone Number </span>
-      <span class="details-text"> {{ contact.phone }} </span>
-    </div>
-
-    <div class="details-container">
-      <span class="details-label"> Branch </span>
-      <span class="details-text"> {{ branch.name }} </span>
-    </div>
-
-    <h2 class="mt-4 mb-3">Products</h2>
-    <select
-      multiple
-      disabled
-      *ngIf="contact.products.length"
-      [size]="contact.products.length > 6 ? 6 : contact.products.length"
-    >
-      <option *ngFor="let product of contact.products" [value]="product.id">
-        {{ product.name }}
-      </option>
-    </select>
+  <div *ngIf="editing">
+    <h1 class="d-inline">
+      Editing Contact
+    </h1>
+    <div *ngIf="contactId && contact"></div>
+    <button class="btn btn-dark btn-purple mt-3 mr-3" (click)="cancelEdit()">
+      Cancel
+    </button>
+    <button class="btn btn-dark btn-purple mt-3" (click)="saveContact()">
+      Update Contact
+    </button>
   </div>
 </div>
