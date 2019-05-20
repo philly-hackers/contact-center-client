@@ -7,6 +7,8 @@ import {
   Contact
 } from "../../../shared/models/userdata.model";
 import { Subscription, Observable } from "rxjs";
+import { ContextService } from "src/app/shared/services/context.service";
+import { Router } from "@angular/router";
 
 @Component({
   selector: "search-page",
@@ -15,6 +17,8 @@ import { Subscription, Observable } from "rxjs";
 })
 export class SearchPageComponent implements OnInit, OnDestroy {
   subscriptions: Subscription[] = [];
+
+  public isLoggedIn = false;
 
   public isDirty = false;
 
@@ -42,10 +46,18 @@ export class SearchPageComponent implements OnInit, OnDestroy {
 
   constructor(
     private broadcaster: Broadcaster,
-    private searchService: SearchService
+    private searchService: SearchService,
+    private contextService: ContextService,
+    private router: Router
   ) {}
 
   ngOnInit() {
+    this.isLoggedIn = this.contextService.auth != null && this.contextService.auth !== 'false';
+
+    this.router.events.subscribe(v => {
+      this.isLoggedIn = this.contextService.auth != null && this.contextService.auth !== 'false';
+    });
+
     this.searchService.clearContacts();
     
     this.searchService.getBranchDetails();
