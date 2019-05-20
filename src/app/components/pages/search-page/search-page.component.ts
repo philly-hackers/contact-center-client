@@ -75,7 +75,7 @@ export class SearchPageComponent implements OnInit, OnDestroy {
       });
 
       this.products = Object.values(newProductListObject);
-      this.displayedBranches = Object.values(newBranchListObject);
+      this.sortedBranches = Object.values(newBranchListObject);
 
       this.resetConfig();
       this.filterContacts();
@@ -91,7 +91,7 @@ export class SearchPageComponent implements OnInit, OnDestroy {
       if (this.sortByDistance) {
         this.sortBranchesByDistance();
       } else {
-        this.displayedBranches = this.branches;
+        this.sortedBranches = this.branches;
       }
     }
   }
