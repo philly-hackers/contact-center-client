@@ -1,41 +1,61 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
 import { Branch } from '../../../shared/models/userdata.model';
-import { BranchesService } from 'src/app/shared/services/branches.service';
 import { SearchService } from 'src/app/search.service';
+import { ProductService } from 'src/app/shared/services/product.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'create-product-page',
   templateUrl: './create-product-page.component.html',
   styleUrls: ['./create-product-page.component.scss']
 })
-export class CreateProductPageComponent implements OnInit {
-  
+export class CreateProductPageComponent implements OnInit, OnDestroy {
+  subscriptions: Subscription[] = [];
   public productName: string;
+  productCategory: string;
   public productBranches: string[];
   public availableBranches: Branch[];
-  
-  constructor(private router: Router, private searchService: SearchService) {}
-  
+  selectedBranches: Branch[] = [];
+
+  constructor(private router: Router, private searchService: SearchService, private productService: ProductService) {}
+
   ngOnInit() {
     this.searchService.getBranchDetails();
-    this.searchService.getBranchesData.subscribe(data => {
-      this.availableBranches = data;
-    });
+    this.subscriptions.push(
+      this.searchService.getBranchesData.subscribe(data => {
+        this.availableBranches = data;
+      })
+    );
   }
 
-  public onCreateProduct() {
-    console.log('onCreateProduct', this.productName);
+  addSelectedBranch(selectedBranch: Branch) {
+    this.selectedBranches.push(selectedBranch);
+  }
+
+  public createProduct() {
+    console.log('onCreateProduct', this.productName, this.productCategory);
     const params = {
       'name': this.productName,
-      'category': 'Small Commercial',
-      'branches': this.productBranches,
+      'category': this.productCategory,
+      'branches': this.selectedBranches,
       'isactive': 'true'
     };
-    this.router.navigateByUrl('/branches');
+
+    this.productService.addNewProduct(params);
+    this.subscriptions.push(
+      this.productService.getNewAddedProduct.subscribe(product => {
+        if (product && product.name === this.productName) {
+          this.router.navigateByUrl('/branches');
+        }
+      })
+    );
   }
 
   ngOnDestroy() {
+    this.subscriptions.forEach( subscription => {
+      subscription.unsubscribe();
+    });
 
   }
 }

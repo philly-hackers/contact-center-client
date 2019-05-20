@@ -25,6 +25,10 @@ export class ProductService {
     return this.productsByBranchData.asObservable();
   }
 
+  get getNewAddedProduct() {
+    return this.addProductResponse.asObservable();
+  }
+
   getAllProducts() {
     this.dataService.getRequest(this.branchPostURL, '').subscribe((data) => {
       this.allProductsData.next(data);
