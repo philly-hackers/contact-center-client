@@ -10,7 +10,7 @@
   >
     <span class="navbar-toggler-icon"></span>
   </button>
- <a href="/search"><div class="logo"></div></a>
+  <a href="/search"><div class="logo"></div></a>
 
   <div class="collapse navbar-collapse" id="navbarToggle" *ngIf="isLoggedIn">
     <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
@@ -18,14 +18,14 @@
         <a class="nav-link" routerLink="/search"> Search Contacts </a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" routerLink="/branches"> Manage Branches</a>
+        <a class="nav-link" routerLink="/branches"> Manage Branches </a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" routerLink="/create-product"> Manage Products</a>
+        <a class="nav-link" routerLink="/create-product"> Create Products </a>
       </li>
     </ul>
-    <div class="nav-user-data mr-4">Hello, {{ username }}</div>
-    <div class="form-inline my-2 my-lg-0">
+    <div class="nav-user-data mr-4" style="padding-left: 15px;">Hello, {{ username }}</div>
+    <div class="form-inline my-2 my-lg-0" style="padding-left: 15px;">
       <button class="btn btn-outline-light my-2 my-sm-0" (click)="logout()">
         Log Out
       </button>
@@ -33,8 +33,12 @@
   </div>
 
   <div class="collapse navbar-collapse" id="navbarToggle" *ngIf="!isLoggedIn">
-    <ul class="navbar-nav mr-auto mt-2 mt-lg-0"></ul>
-    <div class="form-inline my-2 my-lg-0">
+    <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+      <li class="nav-item">
+        <a class="nav-link" routerLink="/search"> Search Contacts </a>
+      </li>
+    </ul>
+    <div class="form-inline my-2 my-lg-0" style="padding-left: 15px">
       <button
         class="btn btn-outline-light my-2 my-sm-0"
         (click)="navigateToLogInPage()"

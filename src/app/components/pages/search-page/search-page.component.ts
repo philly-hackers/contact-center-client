@@ -241,7 +241,8 @@ export class SearchPageComponent implements OnInit, OnDestroy {
   }
 
   getBranchName() {
-    return this.sortedBranches.find(branch => branch.id === this.selectedSearchBranchId).name;
+    const branchObj = this.sortedBranches.find(branch => branch.id === this.selectedSearchBranchId);
+    return branchObj ? branchObj.name : '';
   }
 
   ngOnDestroy() {}
