@@ -1,128 +1,186 @@
 <div class="page-body">
   <h1>Search Contacts</h1>
 
-  <div class="row" style="align-items: center">
-    <div class="col-6">
-      <label for="branch">Select a branch</label>
+  <div class="mt-4">
+    <label for="branch">Search by term</label>
+    <div class="input-group mb-2 mt-2 w-100">
+      <input
+        id="searchTerm"
+        type="text"
+        class="form-control"
+        [(ngModel)]="searchTerm"
+        placeholder="Auto"
+      />
+      <div class="input-group-append">
+        <button class="btn btn-purple" (click)="search()">
+          <fa name="search"></fa>
+        </button>
+      </div>
     </div>
-    <div class="col-6 text-right">
-      <button
-        class="btn btn-sm mb-2 toggle-btn"
-        (click)="toggleSort()"
-        [ngClass]="{ active: sortByDistance }"
+  </div>
+
+  <div class="row mb-4">
+    <div class="col-12">
+      <a href="#" style="float:right;" (click)="toggleConfig($event)">
+        {{ !showConfig ? "Show Advanced Search" : "Hide Advanced Search" }}</a
       >
-        Sort By Distance
-      </button>
     </div>
   </div>
-  <div class="input-group mb-3">
-    <select
-      class="custom-select"
-      id="branch"
-      [(ngModel)]="selectedBranchId"
-      (change)="onBranchSelect($event.target.value)"
-    >
-      <option selected disabled [value]="null">Choose...</option>
-      <option *ngFor="let branch of displayedBranches" [value]="branch.id">{{
-        branch.name
-      }}</option>
-    </select>
+
+  <div *ngIf="showConfig" class="m-3 mb-4">
+    <div class="mt-4 mb-2">
+      <div class="row" style="align-items: center">
+        <div class="col-6">
+          <label for="branchSearch">Search by branch</label>
+        </div>
+        <div class="col-6 text-right">
+          <button
+            class="btn btn-sm mb-2 btn-purple"
+            (click)="toggleSort()"
+            [ngClass]="{ active: sortByDistance }"
+          >
+            Sort By Distance
+          </button>
+        </div>
+      </div>
+
+      <div class="input-group mb-2 w-100">
+        <div class="input-group mb-3">
+          <select
+            class="custom-select"
+            id="branchSearch"
+            [(ngModel)]="selectedSearchBranchId"
+            (change)="searchByBranch()"
+          >
+            <option selected disabled [value]="null">Choose a branch...</option>
+            <option *ngFor="let branch of sortedBranches" [value]="branch.id">{{
+              branch.name
+            }}</option>
+          </select>
+        </div>
+      </div>
+    </div>
+
+    <!-- 
+    <div class="input-group mb-3">
+      <select
+        [disabled]="!contacts.length"
+        class="custom-select"
+        id="branch"
+        [(ngModel)]="selectedBranchId"
+        (change)="filterContacts()"
+      >
+        <option selected disabled value="All">All Branches</option>
+        <option *ngFor="let branch of displayedBranches" [value]="branch.id">{{
+          branch.name
+        }}</option>
+      </select>
+    </div> -->
+
+    <label for="product">Select a Product</label>
+    <div class="input-group mb-3">
+      <select
+        [disabled]="!contacts.length"
+        class="custom-select"
+        id="product"
+        [(ngModel)]="selectedProductId"
+        (change)="filterContacts()"
+      >
+        <option selected value="All">All Products</option>
+        <option *ngFor="let product of products" [value]="product.id">{{
+          product.name
+        }}</option>
+      </select>
+    </div>
   </div>
 
-  <label for="product">Filter By Product</label>
-  <div class="input-group mb-3">
-    <select
-      [disabled]="!selectedBranch"
-      class="custom-select"
-      id="product"
-      [(ngModel)]="selectedProductId"
-      (change)="onProductSelect($event.target.value)"
-    >
-      <option selected value="All">All Products</option>
-      <option *ngFor="let product of products" [value]="product.id">{{
-        product.name
-      }}</option>
-    </select>
-  </div>
-
-  <h2 class="mt-5 mb-4">Contacts List</h2>
-  <div id="accordion">
+  <h2 *ngIf="isDirty" class="mt-5 mb-4">
+    {{
+      !isDirty
+        ? "Contacts List"
+        : displayedSearchTerm
+        ? 'Showing Results for "' + displayedSearchTerm + '"'
+        : 'Showing Results for Branch "' + getBranchName() + '"'
+    }}
+  </h2>
+  <div id="accordion" class="card-container">
     <div
       *ngIf="isDirty && !displayedContacts.length && !loading"
       class="w-100 text-center p-5"
-    > 
+    >
       No results
-    </div>
-
-    <div *ngIf="!isDirty && !loading" class="w-100 text-center p-5">
-      Select a branch
     </div>
 
     <div *ngIf="loading" class="w-100 text-center p-5">
       <fa size="2x" animation="spin" name="spinner"></fa>
     </div>
 
-    <div class="card" *ngFor="let contact of displayedContacts; index as i">
-      <div
-        class="card-header d-flex"
-        data-toggle="collapse"
-        [attr.data-target]="getTarget(i, true)"
-      >
-        <span class="card-header-item-container">
-          <span class="card-header-item d-flex col-lg-3 col-sm-6 col-12">
-            {{ contact.name }}
-          </span>
-          <span class="card-header-item d-sm-flex col-lg-3 col-sm-6">
-            {{ contact.type }}
-          </span>
-          <span class="card-header-item d-lg-flex col-lg-3"
-            ><a href="mailto:{{ contact.email }}"> {{ contact.email }} </a>
-          </span>
-          <span class="card-header-item d-lg-flex col-lg-3"
-            ><a href="tel:{{ contact.phone }}"> {{ contact.phone }} </a>
-          </span>
-        </span>
-
-        <span class="card-header-collapse-icon">
-          <fa name="angle-down"></fa>
-        </span>
-      </div>
-      <div
-        id="{{ getTarget(i, false) }}"
-        class="collapse"
-        data-parent="#accordion"
-      >
-        <div class="card-body">
-          <div class="card-body-item">
-            <fa class="card-body-icon" name="phone"></fa>
-            <span
+    <div *ngFor="let contact of displayedContacts; index as i">
+      <div *ngIf="contact.name !== null" class="card">
+        <div
+          class="card-header d-flex"
+          data-toggle="collapse"
+          [attr.data-target]="getTarget(i, true)"
+        >
+          <span class="card-header-item-container">
+            <span class="card-header-item d-flex col-lg-3 col-sm-6 col-12">
+              {{ contact.name }}
+            </span>
+            <span class="card-header-item d-sm-flex col-lg-3 col-sm-6">
+              {{ contact.type }}
+            </span>
+            <span class="card-header-item d-lg-flex col-lg-3"
+              ><a href="mailto:{{ contact.email }}"> {{ contact.email }} </a>
+            </span>
+            <span class="card-header-item d-lg-flex col-lg-3"
               ><a href="tel:{{ contact.phone }}"> {{ contact.phone }} </a>
             </span>
-          </div>
-          <div class="card-body-item">
-            <fa class="card-body-icon" name="envelope"></fa>
-            <span>
-              <a href="mailto:{{ contact.email }}"> {{ contact.email }} </a>
-            </span>
-          </div>
-          <div class="card-body-item">
-            <fa class="card-body-icon" name="bookmark"></fa>
-            <span> Products </span>
-            <div class="d-flex flex-wrap product-container">
-              <div
-                class="product-item"
-                *ngFor="let product of contact.products"
-              >
-                {{ product.name }}
+          </span>
+
+          <span class="card-header-collapse-icon">
+            <fa name="angle-down"></fa>
+          </span>
+        </div>
+        <div
+          id="{{ getTarget(i, false) }}"
+          class="collapse"
+          data-parent="#accordion"
+        >
+          <div class="card-body">
+            <div class="card-body-item">
+              <fa class="card-body-icon" name="phone"></fa>
+              <span
+                ><a href="tel:{{ contact.phone }}"> {{ contact.phone }} </a>
+              </span>
+            </div>
+            <div class="card-body-item">
+              <fa class="card-body-icon" name="envelope"></fa>
+              <span>
+                <a href="mailto:{{ contact.email }}"> {{ contact.email }} </a>
+              </span>
+            </div>
+            <div class="card-body-item">
+              <fa class="card-body-icon" name="box-open"></fa>
+              <span> Products </span>
+              <div class="d-flex flex-wrap mt-3">
+                <div
+                  class="product-item"
+                  *ngFor="let product of contact.products"
+                >
+                  {{ product.name }}
+                </div>
               </div>
             </div>
-          </div>
-          <div class="card-body-item">
-            <fa class="card-body-icon" name="university"></fa>
-            <span> Branches </span>
-            <div class="d-flex flex-wrap branch-container">
-              <div class="product-item" *ngFor="let branch of contact.branches">
-                {{ branch.name }}
+            <div class="card-body-item">
+              <fa class="card-body-icon" name="building"></fa>
+              <span> Branches </span>
+              <div class="d-flex flex-wrap mt-3">
+                <div
+                  class="product-item"
+                  *ngFor="let branch of contact.branches"
+                >
+                  {{ branch.name }}
+                </div>
               </div>
             </div>
           </div>

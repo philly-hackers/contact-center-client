@@ -21,8 +21,7 @@ export class CreateContactPageComponent implements OnInit, OnDestroy {
   products: Product[];
   userSelectedProducts: Product[] = [];
 
-  public firstName: string;
-  public lastName: string;
+  public name: string;
   public phoneNumber: string;
   public emailAddress: string;
   public contactType: string;
@@ -74,13 +73,23 @@ export class CreateContactPageComponent implements OnInit, OnDestroy {
   }
 
   public onCreateContact() {
+    const products = this.userSelectedProducts.map(prod => {
+      return {
+        id: prod.id,
+        category: null,
+        branches: null,
+        isactive: null,
+        name: null
+      };
+    });
+
     const params = {
-      'name': this.firstName,
+      'name': this.name,
       'email': this.emailAddress,
       'phone': this.phoneNumber,
       'type': this.contactType,
       'branches': this.branches,
-      'products': this.userSelectedProducts,
+      'products': products,
       'isactive': true
     };
 
@@ -88,7 +97,7 @@ export class CreateContactPageComponent implements OnInit, OnDestroy {
 
     this.subscriptions.push(
       this.contactService.addContactResponse.subscribe(contact => {
-        if (contact && contact.name === this.firstName) {
+        if (contact && contact.name === this.name) {
           this.router.navigateByUrl('/branches/' + this.branchId || '');
         }
       })

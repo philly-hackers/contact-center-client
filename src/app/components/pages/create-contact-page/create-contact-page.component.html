@@ -2,17 +2,11 @@
   <a *ngIf="branchId" [routerLink]="getBranchRoute()">Return to Branch Details...</a>
   <h1 class="mb-4">Create Contact</h1>
   <div class="row">
-    <div class="col-md-6">
-      <label for="firstName">First Name</label>
+    <div class="col-md-12">
+      <label for="name">Full Name</label>
       <div class="input-group mb-3">
         <input
-          class="form-control" type="text" id="firstName" [(ngModel)]="firstName" placeholder="e.g. Agent" />
-      </div>
-    </div>
-    <div class="col-md-6">
-      <label for="lastName">Last Name</label>
-      <div class="input-group mb-3">
-        <input class="form-control" type="text" id="lastName" [(ngModel)]="lastName" placeholder="e.g. Smith" />
+          class="form-control" type="text" id="name" [(ngModel)]="name" placeholder="e.g. Agent Smith" />
       </div>
     </div>
   </div>
