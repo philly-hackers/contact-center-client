@@ -8,11 +8,15 @@ import { AppComponent } from './app.component';
 import { AngularFontAwesomeModule } from 'angular-font-awesome';
 
 import {
-  LoginPageComponent, ContactsPageComponent, BranchesPageComponent, ProductsPageComponent,
-  CreateContactPageComponent, CreateBranchPageComponent, CreateProductPageComponent,
-  BranchesDetailsPageComponent, ProductsDetailsPageComponent, ContactsDetailsPageComponent,
-  FooterComponent, SearchPageComponent } from './components';
-
+  BranchesPageComponent,
+  BranchesDetailsPageComponent,
+  CreateContactPageComponent,
+  CreateBranchPageComponent,
+  CreateProductPageComponent,
+  ContactsDetailsPageComponent,
+  FooterComponent,
+  LoginPageComponent,
+  SearchPageComponent } from './components';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -30,14 +34,11 @@ const routes: Routes = [
   { path: 'branches', component: BranchesPageComponent },
   { path: 'branches/:branchId', component: BranchesDetailsPageComponent },
   { path: 'branches/:branchId/:contactId', component: ContactsDetailsPageComponent },
-  { path: 'contacts', component: ContactsPageComponent },
   { path: 'contacts/:contactId', component: ContactsDetailsPageComponent },
   { path: 'create-contact', component: CreateContactPageComponent },
   { path: 'create-branch', component: CreateBranchPageComponent },
   { path: 'create-product', component: CreateProductPageComponent },
   { path: 'login', component: LoginPageComponent },
-  { path: 'products', component: ProductsPageComponent },
-  { path: 'products/:productId', component: ProductsDetailsPageComponent },
   { path: 'search', component: SearchPageComponent },
   { path: '', redirectTo: '/search', pathMatch: 'full' }
 ];
@@ -46,14 +47,11 @@ const routes: Routes = [
   declarations: [
     AppComponent,
     LoginPageComponent,
-    ContactsPageComponent,
     BranchesPageComponent,
-    ProductsPageComponent,
     CreateContactPageComponent,
     CreateBranchPageComponent,
     CreateProductPageComponent,
     BranchesDetailsPageComponent,
-    ProductsDetailsPageComponent,
     ContactsDetailsPageComponent,
     SearchPageComponent,
     FooterComponent
