@@ -33,6 +33,12 @@ export class SearchService {
     return this.contactsData.asObservable();
   }
 
+  clearContacts() {
+    this.contactsData = new BehaviorSubject<
+    Contact[]
+  >([]);
+  }
+
   getBranchDetails() {
     this.broadcaster.broadcast("loader", true);
     this.dataService.getRequest(this.baseBranchURL, "").subscribe(data => {

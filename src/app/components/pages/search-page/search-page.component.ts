@@ -46,6 +46,8 @@ export class SearchPageComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit() {
+    this.searchService.clearContacts();
+    
     this.searchService.getBranchDetails();
     this.searchService.getBranchesData.subscribe(data => {
       this.branches = data;
