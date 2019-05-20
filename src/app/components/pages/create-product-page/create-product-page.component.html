@@ -1,24 +1,22 @@
 <div class="page-body">
   <a routerLink="/branches">Return to Manage Branches...</a>
   <h1 class="mb-4">Create Product</h1>
-
   <label for="productName"> Product Name</label>
   <div class="input-group mb-3">
     <input class="form-control" type="text" id="productName" [(ngModel)]="productName" placeholder="e.g. Auto Insurance" />
+  </div>
+  <label for="productName"> Branch Category</label>
+  <div class="input-group mb-3">
+    <input class="form-control" type="text" id="productCategory" [(ngModel)]="productCategory" placeholder="e.g. Small Commercial" />
   </div>
   <div class="row mt-3 mb-3">
     <div class="col-12">
       <label for="productBranches">Select the branches that apply...</label>
     </div>
     <div class="col-12">
-      <select
-        *ngIf="availableBranches.length"
-        multiple
-        id="productBranches"
-        [size]="availableBranches.length > 8 ? 8 : availableBranches.length"
-        [(ngModel)]="productBranches"
-      >
-        <option *ngFor="let branch of availableBranches" [value]="branch.id">
+      <select *ngIf="availableBranches.length" multiple id="productBranches" 
+        [size]="availableBranches.length > 8 ? 8 : availableBranches.length" [(ngModel)]="productBranches">
+        <option *ngFor="let branch of availableBranches" [value]="branch" (click)="addSelectedBranch(branch)">
           {{ branch.name }}
         </option>
       </select>
