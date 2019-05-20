@@ -22,7 +22,7 @@ export class SearchPageComponent implements OnInit, OnDestroy {
   public displayedBranches: Branch[];
   public sortByDistance = false;
 
-  public selectedBranchId = null;
+  public selectedBranchId = "All";
   private selectedBranch = null;
 
   public products: Product[] = [];
@@ -33,12 +33,21 @@ export class SearchPageComponent implements OnInit, OnDestroy {
 
   public loading = false;
 
+  public searchTerm: string;
+  public displayedSearchTerm: string;
+  public showConfig: boolean = false;
+
+  public selectedSearchBranchId: string = null;
+  public sortedBranches;
+
   constructor(
     private broadcaster: Broadcaster,
     private searchService: SearchService
   ) {}
 
   ngOnInit() {
+    this.searchService.clearContacts();
+    
     this.searchService.getBranchDetails();
     this.searchService.getBranchesData.subscribe(data => {
       this.branches = data;
@@ -46,22 +55,31 @@ export class SearchPageComponent implements OnInit, OnDestroy {
       if (this.sortByDistance) {
         this.sortBranchesByDistance();
       } else {
-        this.displayedBranches = this.branches;
+        this.sortedBranches = this.branches;
       }
     });
 
     this.searchService.getContactsData.subscribe(contacts => {
       const newProductListObject = {};
+      const newBranchListObject = {};
 
-      contacts.forEach(contact => {
+      this.contacts = contacts.filter(contact => contact.name);
+
+      this.contacts.forEach(contact => {
         contact.products.forEach(product => {
           newProductListObject[product.id] = product;
+        });
+        contact.branches.forEach(branch => {
+          newBranchListObject[branch.id] = branch;
         });
       });
 
       this.products = Object.values(newProductListObject);
-      this.contacts = contacts;
-      this.onProductSelect("All");
+      this.displayedBranches = Object.values(newBranchListObject);
+
+      this.resetConfig();
+      this.filterContacts();
+
       this.loading = false;
     });
   }
@@ -69,7 +87,7 @@ export class SearchPageComponent implements OnInit, OnDestroy {
   toggleSort() {
     this.sortByDistance = !this.sortByDistance;
 
-    if(this.branches) {
+    if (this.branches) {
       if (this.sortByDistance) {
         this.sortBranchesByDistance();
       } else {
@@ -85,19 +103,19 @@ export class SearchPageComponent implements OnInit, OnDestroy {
         const x = position.coords.longitude;
 
         this.branches.forEach(branch => {
-          const branchY = +branch.geolocation.split(',')[0];
-          const branchX = +branch.geolocation.split(',')[1];
+          const branchY = +branch.geolocation.split(",")[0];
+          const branchX = +branch.geolocation.split(",")[1];
           const distance = this.distance(y, x, branchY, branchX);
-          branch['distance'] = distance;
+          branch["distance"] = distance;
         });
 
-        this.displayedBranches = this.branches.slice().sort((a, b) => {
-          return a['distance'] - b['distance'];
+        this.sortedBranches = this.branches.slice().sort((a, b) => {
+          return a["distance"] - b["distance"];
         });
       });
     } else {
       this.sortByDistance = false;
-      this.displayedBranches = this.branches;
+      this.sortedBranches = this.branches;
     }
   }
 
@@ -123,53 +141,107 @@ export class SearchPageComponent implements OnInit, OnDestroy {
   }
 
   resetFields() {
-    this.selectedProductId = "All";
     this.contacts = [];
     this.displayedContacts = [];
     this.products = [];
+    this.resetConfig();
   }
 
-  onBranchSelect(branchId: string) {
+  resetSearchTerm() {
+    this.searchTerm = null;
+    this.displayedSearchTerm = null;
+  }
+
+  resetSearchBranch() {
+    this.selectedSearchBranchId = null;
+  }
+  
+  resetConfig() {
+    this.selectedProductId = "All";
+    this.selectedBranchId = "All";
+  }
+
+  searchByBranch() {
     this.isDirty = true;
-    console.log("selected branch", branchId);
-
-    const newBranch =
-      this.branches.find(branch => branch.id === branchId) || null;
-
-    if (
-      newBranch &&
-      (this.selectedBranch === null || this.selectedBranch.id !== newBranch)
-    ) {
-      this.selectedBranchId = branchId;
-      this.selectedBranch = newBranch;
-      this.resetFields();
-
-      // Fetch updated contacts
-      this.loading = true;
-      this.searchService.getContactDetails(this.selectedBranchId);
-    }
+    this.resetSearchTerm();
+    this.resetFields();
+    this.loading = true;
+    this.searchService.getContactDetails(this.selectedSearchBranchId);
   }
 
-  onProductSelect(productId: string) {
-    console.log("selected product", productId, this.products);
-    const newProduct =
-      this.products.find(products => products.id === productId) || null;
+  // onBranchSelect(branchId: string) {
+  //   const newBranch =
+  //     this.branches.find(branch => branch.id === branchId) || null;
 
-    if (productId === "All") {
-      this.displayedContacts = this.contacts;
-    } else if (newProduct) {
-      this.displayedContacts = this.contacts.filter(contact => {
-        return contact.products.find(product => {
-          return product.id === productId;
-        });
-      });
-    } else {
-      this.displayedContacts = [];
-    }
-  }
+  //   if (
+  //     newBranch &&
+  //     (this.selectedBranch === null || this.selectedBranch.id !== newBranch)
+  //   ) {
+  //     this.selectedBranchId = branchId;
+  //     this.selectedBranch = newBranch;
+
+  //     // Fetch updated contacts
+  //     this.loading = true;
+  //     this.searchService.getContactDetails(this.selectedBranchId);
+  //   }
+  // }
+
+  // onProductSelect(productId: string) {
+  //   console.log("selected product", productId, this.products);
+  //   const newProduct =
+  //     this.products.find(products => products.id === productId) || null;
+
+  //   if (productId === "All") {
+  //     this.displayedContacts = this.contacts;
+  //   } else if (newProduct) {
+  //     this.displayedContacts = this.contacts.filter(contact => {
+  //       return contact.products.find(product => {
+  //         return product.id === productId;
+  //       });
+  //     });
+  //   } else {
+  //     this.displayedContacts = [];
+  //   }
+  // }
 
   public getTarget(id, prependHash) {
     return prependHash ? "#" + "ContactItem" + id : "ContactItem" + id;
+  }
+
+  search() {
+    this.isDirty = true;
+    this.resetSearchBranch();
+
+    if (this.searchTerm) {
+      this.resetFields();
+      this.loading = true;
+      this.displayedSearchTerm = this.searchTerm;
+      this.searchService.getContactByTerm(this.searchTerm);
+    }
+  }
+
+  toggleConfig(event) {
+    event.preventDefault();
+    this.showConfig = !this.showConfig;
+  }
+
+  filterContacts() {
+    this.displayedContacts = this.contacts.filter(contact => {
+      return (
+        (this.selectedBranchId === "All" ||
+          contact.branches.find(
+            branch => branch.id === this.selectedBranchId
+          )) &&
+        (this.selectedProductId === "All" ||
+          contact.products.find(
+            product => product.id === this.selectedProductId
+          ))
+      );
+    });
+  }
+
+  getBranchName() {
+    return this.sortedBranches.find(branch => branch.id === this.selectedSearchBranchId).name;
   }
 
   ngOnDestroy() {}

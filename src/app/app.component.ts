@@ -52,4 +52,5 @@ export class AppComponent implements OnInit {
   public navigateToLogInPage() {
     this.router.navigateByUrl('/login');
   }
+  
 }
