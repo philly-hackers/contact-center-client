@@ -17,11 +17,6 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
-import { BranchesComponent } from './branches/branches.component';
-import { ContactsComponent } from './contacts/contacts.component';
-import { ProductsComponent } from './products/products.component';
-import { SearchComponent } from './search/search.component';
-
 import { Broadcaster } from './shared/services/broadcaster.service'
 import { DataService } from './shared/services/data.service';
 import { SearchService } from './search.service';
@@ -31,19 +26,19 @@ import { ProductService } from './shared/services/product.service';
 import { BranchesService } from './shared/services/branches.service';
 
 const routes: Routes = [
-  { path: 'login', component: LoginPageComponent },
-  { path: 'contacts', component: ContactsPageComponent },
-  { path: 'contacts/:contactId', component: ContactsDetailsPageComponent },
   { path: 'branches/:branchId/create-contact', component: CreateContactPageComponent },
   { path: 'branches', component: BranchesPageComponent },
   { path: 'branches/:branchId', component: BranchesDetailsPageComponent },
-  { path: 'products', component: ProductsPageComponent },
-  { path: 'products/:productId', component: ProductsDetailsPageComponent },
+  { path: 'branches/:branchId/:contactId', component: ContactsDetailsPageComponent },
+  { path: 'contacts', component: ContactsPageComponent },
+  { path: 'contacts/:contactId', component: ContactsDetailsPageComponent },
   { path: 'create-contact', component: CreateContactPageComponent },
   { path: 'create-branch', component: CreateBranchPageComponent },
   { path: 'create-product', component: CreateProductPageComponent },
+  { path: 'login', component: LoginPageComponent },
+  { path: 'products', component: ProductsPageComponent },
+  { path: 'products/:productId', component: ProductsDetailsPageComponent },
   { path: 'search', component: SearchPageComponent },
-  { path: 'branches/:branchId/:contactId', component: ContactsDetailsPageComponent },
   { path: '', redirectTo: '/search', pathMatch: 'full' }
 ];
 
@@ -61,11 +56,7 @@ const routes: Routes = [
     ProductsDetailsPageComponent,
     ContactsDetailsPageComponent,
     SearchPageComponent,
-    FooterComponent,
-    BranchesComponent,
-    ContactsComponent,
-    ProductsComponent,
-    SearchComponent
+    FooterComponent
   ],
   imports: [
     BrowserModule,
