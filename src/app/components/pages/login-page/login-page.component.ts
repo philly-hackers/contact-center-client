@@ -14,6 +14,7 @@ export class LoginPageComponent {
   constructor(private router: Router, private contextService: ContextService) {}
 
   public login() {
+    if(!this.username) return;
     this.contextService.auth = this.username;
     this.router.navigateByUrl('/branches');
   }

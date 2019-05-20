@@ -1,6 +1,15 @@
 <div class="page-body">
   <a routerLink="/branches">Return to Manage Branches...</a>
-  <h1 class="mb-4">Branch Details Page</h1>
+
+  <div class="mb-4">
+    <h1 class="d-inline mr-2 mb-2">
+      Branch Details Page
+    </h1>
+    <button class="btn btn-purple-inverse btn-sm edit-btn mb-2">
+      <fa name="edit"></fa> Edit
+    </button>
+  </div>
+
   <div *ngIf="branchId && branch">
     <div class="details-container">
       <span class="details-label"> Branch Name </span>
@@ -20,10 +29,14 @@
       <fa name="plus"></fa> Create New Contact
     </button>
 
-
     <div>
-      <ng-container *ngFor="let contact of contacts" >
-        <div *ngIf="contact.name !== null" (click)="navigateToContactDetailsPage(contact.id)" class="card" tabindex="0">
+      <ng-container *ngFor="let contact of contacts">
+        <div
+          *ngIf="contact.name !== null"
+          (click)="navigateToContactDetailsPage(contact.id)"
+          class="card"
+          tabindex="0"
+        >
           <div class="card-header d-flex">
             <span class="card-header-item-container">
               <span class="card-header-item d-flex col-12 col-md-6">
@@ -39,7 +52,7 @@
             </span>
           </div>
         </div>
-    </ng-container>
+      </ng-container>
     </div>
   </div>
 </div>

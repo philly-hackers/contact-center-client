@@ -8,6 +8,14 @@
 
 .nav-link {
   font-size: 17px;
+  color: white !important;
+  padding-right: 15px !important;
+  padding-left: 15px !important;
+}
+
+.nav-link:hover,
+.nav-link:focus {
+  background-color: rgba(0, 0, 0, 0.3);
 }
 
 .navbar {
@@ -30,4 +38,3 @@
     white-space: nowrap;
   }
 }
-
