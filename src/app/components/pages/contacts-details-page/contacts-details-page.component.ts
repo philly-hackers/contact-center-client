@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Contact, Branch } from 'src/app/shared/models/userdata.model';
+import { Contact, Branch, Product } from 'src/app/shared/models/userdata.model';
 import { ContactService } from 'src/app/shared/services/contact.service';
+import { SearchService } from 'src/app/search.service';
 
 @Component({
   selector: 'contacts-details-page',
@@ -16,21 +17,34 @@ export class ContactsDetailsPageComponent implements OnInit {
   
   public editing = false;
 
+  public products: Product[];
+  
+  public name: string;
+  public phoneNumber: string;
+  public emailAddress: string;
+  public contactType: string;
+
+  // Array of ids of products selected
+  public selectedProducts: string[];
+  
+  public availableBranches: Branch[];
+  public selectedBranch: string;
+
   constructor(
     private route: ActivatedRoute,
-    private contactService: ContactService
+    private contactService: ContactService,
+    private searchService: SearchService
   ) {}
 
   getBranchRoute() {
-    return '/branches/' + this.branchId;
+    return this.branchId ? '/branches/' +  this.branchId : '/branches';
   }
 
   ngOnInit() {
-    /* Replace with get branch object */
-    this.branch = {
-      id: 'branch1',
-      name: 'branch1'
-    };
+    this.searchService.getBranchDetails();
+    this.searchService.getBranchesData.subscribe(data => {
+      this.availableBranches = data;
+    });
 
     this.route.paramMap.subscribe(params => {
       this.contactId = JSON.stringify(params.get('contactId')).replace(/\"/g, '');
@@ -45,6 +59,14 @@ export class ContactsDetailsPageComponent implements OnInit {
 
   editContact() {
     this.editing = true;
+    
+    // Set form values
+    this.name = this.contact.name;
+    this.phoneNumber = this.contact.phone;
+    this.emailAddress = this.contact.email;
+    this.contactType = this.contact.type;
+    this.selectedBranch = this.contact.branches[0].id;
+    this.selectedProducts = this.contact.products.map(product => product.id);
   }
 
   saveContact() {
